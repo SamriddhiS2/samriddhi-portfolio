@@ -1,65 +1,146 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from 'react';
+import { Terminal, Eye, Github, Linkedin, Mail, Sun, Moon, Menu, X } from 'lucide-react';
 
-export default function Home() {
+import { themes, AppMode, ThemeMode } from '../data/portfolio';
+import { CursorFollower } from '../components/utilities';
+import { IntroView } from '../components/views/IntroView';
+import { TerminalView } from '../components/views/TerminalView';
+import { VisualView } from '../components/views/VisualView';
+
+export default function App() {
+  const [mounted, setMounted] = useState(false);
+  const [mode, setMode] = useState<AppMode>('intro'); 
+  const [themeMode, setThemeMode] = useState<ThemeMode>('dark');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem('portfolioMode') as AppMode;
+    if (savedMode) setMode(savedMode);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted) localStorage.setItem('portfolioMode', mode);
+  }, [mode, mounted]);
+
+  const theme = themes[themeMode];
+  const nameTyped = "Samriddhi Sivakumar";
+  const toggleTheme = () => setThemeMode(prev => prev === 'dark' ? 'light' : 'dark');
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  const handleNavClick = (sectionId: string) => {
+    setIsMenuOpen(false); 
+    if (mode !== 'visual') {
+        setMode('visual');
+        setTimeout(() => scrollTo(sectionId), 100);
+    } else {
+        scrollTo(sectionId);
+    }
+  };
+
+  if (!mounted) return null;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={`min-h-screen ${theme.bg} ${theme.text} font-sans transition-colors duration-500 overflow-x-hidden selection:bg-emerald-300 selection:text-emerald-900`}>
+      <CursorFollower theme={theme} />
+      
+      {/* Navbar */}
+      <nav className={`fixed top-0 left-0 w-full z-50 ${themeMode === 'dark' ? 'bg-slate-900/90' : 'bg-slate-50/90'} backdrop-blur-lg border-b ${theme.border}`}>
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          {/* Logo / Brand */}
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setMode('intro')} >
+            <div className={`w-8 h-8 rounded-lg overflow-hidden shadow-md flex items-center justify-center ${theme.buttonPrimary}`}>
+                <Terminal size={18} className="text-white" />
+            </div>
+            <div className="font-bold tracking-tight text-lg">
+                <span className={theme.navText}>{nameTyped}</span>
+            </div>
+          </div>
+
+          <div className="hidden md:flex items-center gap-4 ml-auto">
+            <div className="flex items-center gap-6 text-sm font-medium pr-2">
+                <button onClick={() => handleNavClick('about')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>About</button>
+                <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Education</button>
+                <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Experience</button>
+                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Work</button>
+                <button onClick={() => handleNavClick('contact')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Contact</button>
+            </div>
+            
+            <div className={`w-px h-6 ${theme.separator}`}></div>
+            
+            <div className="flex items-center gap-3 pl-2">
+                <button onClick={toggleTheme} className={`p-2 rounded-full transition-colors ${themeMode === 'dark' ? 'bg-white/10 hover:bg-white/20' : 'bg-black/5 hover:bg-black/10'}`}>
+                    {themeMode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+
+                {mode !== 'intro' && (
+                    <div className={`flex ${themeMode === 'dark' ? 'bg-slate-800' : 'bg-slate-200'} p-1 rounded-lg border ${theme.border}`}>
+                        <button onClick={() => setMode('terminal')} className={`p-2 rounded-md transition-all ${mode === 'terminal' ? theme.buttonPrimary : theme.textMuted}`}><Terminal size={18} /></button>
+                        <button onClick={() => setMode('visual')} className={`p-2 rounded-md transition-all ${mode === 'visual' ? theme.buttonPrimary : theme.textMuted}`}><Eye size={18} /></button>
+                    </div>
+                )}
+            </div>
+          </div>
+
+          <div className="md:hidden flex items-center gap-4 ml-auto">
+             <button onClick={toggleTheme} className={`p-2 rounded-full transition-colors ${themeMode === 'dark' ? 'bg-white/10 hover:bg-white/20' : 'bg-black/5 hover:bg-black/10'}`}>
+                {themeMode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={theme.text}>
+                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+             </button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+          <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
+              <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>About</button>
+              <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Education</button>
+              <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Experience</button>
+              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Work</button>
+              <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Contact</button>
+              
+              <div className={`w-full h-px ${theme.separator} my-3`}></div>
+              
+              <div className="grid grid-cols-2 gap-3">
+                   <button onClick={() => { setMode('terminal'); setIsMenuOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-2xl border ${theme.border} ${mode === 'terminal' ? theme.buttonPrimary : theme.text} text-sm font-bold shadow-sm`}>
+                        Tech
+                   </button>
+                   <button onClick={() => { setMode('visual'); setIsMenuOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-2xl border ${theme.border} ${mode === 'visual' ? theme.buttonPrimary : theme.text} text-sm font-bold shadow-sm`}>
+                        <Eye size={16} /> Visual
+                   </button>
+              </div>
+          </div>
+      )}
+
+      <main className="pt-20 min-h-screen flex flex-col relative">
+        {mode === 'intro' && <IntroView setMode={setMode} themeMode={themeMode} theme={theme} />}
+        {mode === 'terminal' && <TerminalView theme={theme} themeMode={themeMode} />}
+        {mode === 'visual' && <VisualView theme={theme} themeMode={themeMode} />}
       </main>
+      
+      {/* Footer */}
+      <footer className={`py-8 text-center ${theme.textMuted} text-sm border-t ${theme.border} mt-auto`}>
+        <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6 font-medium text-xs md:text-sm">
+                <button onClick={() => setMode('intro')} className="hover:text-emerald-400 transition-colors">Home</button>
+                <button onClick={() => handleNavClick('about')} className="hover:text-emerald-400 transition-colors">About</button>
+                <button onClick={() => handleNavClick('education')} className="hover:text-emerald-400 transition-colors">Education</button>
+                <button onClick={() => handleNavClick('experience')} className="hover:text-emerald-400 transition-colors">Experience</button>
+                <button onClick={() => handleNavClick('projects')} className="hover:text-emerald-400 transition-colors">Work</button>
+                <button onClick={() => handleNavClick('contact')} className="hover:text-emerald-400 transition-colors">Contact</button>
+            </div>
+            <div className="flex justify-center gap-6 mt-2">
+                <a href="#" className={`hover:${theme.accentPrimary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
+                <a href="#" className={`hover:${theme.accentSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
+                <a href="#" className={`hover:${theme.accentPrimary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
+            </div>
+            <p className="opacity-80 font-medium mt-2">© 2026 Samriddhi Sivakumar.</p>
+        </div>
+      </footer>
     </div>
   );
 }
