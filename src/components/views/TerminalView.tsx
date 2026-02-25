@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Minus, Maximize2 } from 'lucide-react';
 import { Theme, ThemeMode, projects } from '../../data/portfolio';
 
-type HistoryLine = { type: 'system' | 'info' | 'success' | 'error' | 'link' | 'text' | 'cmd' | 'whoami'; content: string; };
+type HistoryLine = { type: 'system' | 'info' | 'success' | 'error' | 'link' | 'text' | 'cmd' | 'whoami' | 'table'; content: any; };
 
 interface TerminalViewProps {
   theme: Theme;
@@ -45,7 +45,12 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
       case 'help': response = [{ type: 'info', content: 'Available commands: ls, view <id>, whoami, skills, contact, clear' }]; break;
       case 'whoami': response = [{ type: 'whoami', content: 'Samriddhi Sivakumar | CS & Data Science @ UW' }]; break;
       case 'ls': 
-      case 'projects': response = [{ type: 'info', content: 'ID              | NAME\n----------------+------------------' }, ...projects.map(p => ({ type: 'text', content: `${p.id.padEnd(15)} | ${p.title}` } as HistoryLine)), { type: 'system', content: '\nHint: Type "view urban-pulse" to read details.' }]; break;
+      case 'projects': 
+        response = [
+            { type: 'table', content: projects }, 
+            { type: 'system', content: '\nHint: Type "view seeql" to read details.' }
+        ]; 
+        break;
       case 'view':
         if (!argument) {
             response = [{ type: 'error', content: `Usage: view <project-id>` }];
@@ -72,8 +77,8 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
       case 'contact': 
         response = [
             { type: 'link', content: 'Email: ssamriddhi.work@gmail.com' },
-            { type: 'link', content: 'GitHub: github.com/SamriddhiS2' },
-            { type: 'link', content: 'LinkedIn: linkedin.com/in/samriddhisivakumar' }
+            { type: 'link', content: 'GitHub: https://github.com/SamriddhiS2' },
+            { type: 'link', content: 'LinkedIn: https://linkedin.com/in/samriddhisivakumar' }
         ]; 
         break;
       case 'clear': setHistory([]); setInput(''); return;
@@ -121,12 +126,11 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, [history]);
 
-  // Distinct semantic colors
-  const successColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; // Teal
-  const infoColor = themeMode === 'dark' ? 'text-emerald-300' : 'text-emerald-600'; // Green
-  const errColor = themeMode === 'dark' ? 'text-rose-400' : 'text-rose-600'; // Red
-  const linkColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; // Teal Link
-  const sysColor = themeMode === 'dark' ? 'text-slate-500' : 'text-slate-500'; // Gray
+  const successColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; 
+  const infoColor = themeMode === 'dark' ? 'text-emerald-300' : 'text-emerald-600'; 
+  const errColor = themeMode === 'dark' ? 'text-rose-400' : 'text-rose-600'; 
+  const linkColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; 
+  const sysColor = themeMode === 'dark' ? 'text-slate-500' : 'text-slate-500'; 
 
   return (
     <div className="flex-1 flex items-center justify-center p-4 md:p-8 animate-in fade-in zoom-in duration-500">
@@ -136,17 +140,17 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
           <div className={`text-sm ${theme.textMuted} font-mono flex items-center gap-2`}><Terminal size={14} /> guest@samriddhi-os</div>
           <div className={`flex gap-2 ${theme.textMuted}`}><Minus size={14} /><Maximize2 size={14} /></div>
         </div>
-        <div className="flex-1 p-6 overflow-y-auto font-mono text-sm md:text-base custom-scrollbar" onClick={() => inputRef.current?.focus()}>
+        
+        <div className="flex-1 p-6 overflow-y-auto overflow-x-hidden font-mono text-sm md:text-base custom-scrollbar" onClick={() => inputRef.current?.focus()}>
           {history.map((line, i) => (
             <div key={i} className="mb-2 break-words whitespace-pre-wrap"> 
-              {line.type === 'cmd' && <div className="flex"><span className={`mr-2 ${successColor}`}>➜</span><span className={theme.text}>{line.content}</span></div>}
-              {line.type === 'system' && <div className={`${sysColor} italic`}>{line.content}</div>}
-              {line.type === 'info' && <div className={infoColor}>{line.content}</div>}
-              {line.type === 'success' && <div className={successColor}>{line.content}</div>}
-              {line.type === 'error' && <div className={errColor}>{line.content}</div>}
+              {line.type === 'cmd' && <div className="flex"><span className={`mr-2 ${successColor}`}>➜</span><span className={theme.text}>{line.content as string}</span></div>}
+              {line.type === 'system' && <div className={`${sysColor} italic`}>{line.content as string}</div>}
+              {line.type === 'info' && <div className={infoColor}>{line.content as string}</div>}
+              {line.type === 'success' && <div className={successColor}>{line.content as string}</div>}
+              {line.type === 'error' && <div className={errColor}>{line.content as string}</div>}
               
-              {/* Custom Whoami Render: Name no longer has font-bold */}
-              {line.type === 'whoami' && (
+              {line.type === 'whoami' && typeof line.content === 'string' && (
                 <div>
                     <span className={`${successColor}`}>{line.content.split('|')[0].trim()} </span>
                     <span className={sysColor}>|</span>
@@ -154,14 +158,36 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
                 </div>
               )}
 
-              {line.type === 'link' && (
+              {line.type === 'link' && typeof line.content === 'string' && (
                 <div className={`${linkColor} hover:underline cursor-pointer`}>
-                  {line.content.startsWith('http') ? (
-                    <a href={line.content} target="_blank" rel="noopener noreferrer">{line.content}</a>
+                  {line.content.startsWith('http') || line.content.includes('Email:') ? (
+                    <a href={line.content.includes('Email:') ? `mailto:${line.content.split('Email: ')[1]}` : line.content.replace('GitHub: ', '').replace('LinkedIn: ', '')} target="_blank" rel="noopener noreferrer">{line.content}</a>
                   ) : line.content}
                 </div>
               )}
-              {line.type === 'text' && <div className={theme.text}>{line.content}</div>}
+              {line.type === 'text' && typeof line.content === 'string' && <div className={theme.text}>{line.content}</div>}
+
+              {line.type === 'table' && Array.isArray(line.content) && (
+                <div className="my-2 w-full">
+                    <table className="text-left w-full">
+                        <thead>
+                            <tr className={infoColor}>
+                                <th className="py-1 pr-4 md:pr-8 font-normal border-b border-slate-500/50 w-1/3">ID</th>
+                                <th className="py-1 font-normal border-b border-slate-500/50">NAME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {line.content.map((p: any) => (
+                                <tr key={p.id}>
+                                    <td className={`py-1 pr-4 md:pr-8 ${theme.text} whitespace-nowrap align-top`}>{p.id}</td>
+                                    <td className={`py-1 ${theme.text} align-top`}>{p.title}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+              )}
+
             </div>
           ))}
           <form onSubmit={handleCommand} className="flex items-center mt-4">
