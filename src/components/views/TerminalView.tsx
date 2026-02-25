@@ -10,19 +10,33 @@ interface TerminalViewProps {
   themeMode: ThemeMode;
 }
 
+// Full list of commands for autocompletion
+const COMMANDS = ['help', 'whoami', 'ls', 'projects', 'view', 'skills', 'contact', 'clear'];
+
 export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<HistoryLine[]>([
     { type: 'system', content: 'Starting SamriddhiOS kernel v3.0...' },
     { type: 'system', content: 'Welcome, Guest. Type "help" to view available commands.' },
   ]);
+  
+  // States for up/down arrow history
+  const [cmdHistory, setCmdHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
-    const cmd = input.trim().toLowerCase();
-    const args = cmd.split(' ');
+    const cmd = input.trim();
+    if (!cmd) return;
+
+    // Save to command history and reset index
+    setCmdHistory(prev => [...prev, cmd]);
+    setHistoryIndex(-1);
+
+    const args = cmd.toLowerCase().split(' ');
     const command = args[0];
     const argument = args[1]; 
     
@@ -33,18 +47,58 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
       case 'ls': 
       case 'projects': response = [{ type: 'info', content: 'ID              | NAME\n----------------+------------------' }, ...projects.map(p => ({ type: 'text', content: `${p.id.padEnd(15)} | ${p.title}` } as HistoryLine)), { type: 'system', content: '\nHint: Type "view urban-pulse" to read details.' }]; break;
       case 'view':
+        if (!argument) {
+            response = [{ type: 'error', content: `Usage: view <project-id>` }];
+            break;
+        }
         const project = projects.find(p => p.id === argument);
         if (project) { response = [{ type: 'success', content: `>> Opening ${project.title}...` }, { type: 'info', content: `Tech: ${project.tech.join(', ')}` }, { type: 'link', content: `Link: ${project.link}` }, { type: 'text', content: project.details }]; }
-        else { response = [{ type: 'error', content: `Project "${argument}" not found.` }]; }
+        else { response = [{ type: 'error', content: `Project "${argument}" not found. Type "ls" to see project IDs.` }]; }
         break;
       case 'skills': response = [{ type: 'info', content: 'React, Tailwind, Next.js, Node, Python, C++, PyTorch, Pandas' }]; break;
       case 'contact': response = [{ type: 'link', content: 'hello@samriddhi.dev' }]; break;
       case 'clear': setHistory([]); setInput(''); return;
-      case '': break;
       default: response = [{ type: 'error', content: `Command not found: ${command}` }];
     }
-    setHistory(prev => [...prev, { type: 'cmd', content: input }, ...response]);
+    
+    setHistory(prev => [...prev, { type: 'cmd', content: cmd }, ...response]);
     setInput('');
+  };
+
+  // Handle Tab Autocomplete and Up/Down Arrows
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (cmdHistory.length > 0) {
+            const newIdx = historyIndex < cmdHistory.length - 1 ? historyIndex + 1 : historyIndex;
+            setHistoryIndex(newIdx);
+            setInput(cmdHistory[cmdHistory.length - 1 - newIdx]);
+        }
+    } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex > 0) {
+            const newIdx = historyIndex - 1;
+            setHistoryIndex(newIdx);
+            setInput(cmdHistory[cmdHistory.length - 1 - newIdx]);
+        } else if (historyIndex === 0) {
+            setHistoryIndex(-1);
+            setInput('');
+        }
+    } else if (e.key === 'Tab') {
+        e.preventDefault();
+        const args = input.trim().toLowerCase().split(' ');
+        
+        // Autocomplete base commands
+        if (args.length === 1) {
+            const match = COMMANDS.find(c => c.startsWith(args[0]));
+            if (match) setInput(match + ' ');
+        } 
+        // Autocomplete project IDs for 'view'
+        else if (args[0] === 'view' && args.length === 2) {
+            const partialMatch = projects.find(p => p.id.startsWith(args[1]));
+            if (partialMatch) setInput(`view ${partialMatch.id}`);
+        }
+    }
   };
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, [history]);
@@ -56,7 +110,7 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
   const sysColor = themeMode === 'dark' ? 'text-slate-500' : 'text-slate-500';
 
   return (
-    <div className="h-full flex items-center justify-center p-4 md:p-8 animate-in fade-in zoom-in duration-500">
+    <div className="flex-1 flex items-center justify-center p-4 md:p-8 animate-in fade-in zoom-in duration-500">
       <div className={`w-full max-w-4xl ${theme.bgSoft}/90 backdrop-blur-xl rounded-xl border ${theme.border} shadow-2xl overflow-hidden flex flex-col h-[70vh] md:h-[600px]`}>
         <div className={`px-4 py-3 flex items-center justify-between border-b ${theme.border} ${themeMode === 'dark' ? 'bg-slate-950/20' : 'bg-slate-100/60'}`}>
           <div className="flex gap-2"><div className="w-3 h-3 rounded-full bg-rose-400" /><div className="w-3 h-3 rounded-full bg-amber-400" /><div className="w-3 h-3 rounded-full bg-emerald-400" /></div>
@@ -77,7 +131,17 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
           ))}
           <form onSubmit={handleCommand} className="flex items-center mt-4">
             <span className={`mr-2 ${successColor}`}>➜</span>
-            <input ref={inputRef} type="text" value={input} onChange={(e) => setInput(e.target.value)} className={`bg-transparent border-none outline-none ${theme.text} w-full font-mono`} autoFocus spellCheck="false" autoComplete="off" />
+            <input 
+              ref={inputRef} 
+              type="text" 
+              value={input} 
+              onChange={(e) => setInput(e.target.value)} 
+              onKeyDown={handleKeyDown}
+              className={`bg-transparent border-none outline-none ${theme.text} w-full font-mono`} 
+              autoFocus 
+              spellCheck="false" 
+              autoComplete="off" 
+            />
           </form>
           <div ref={endRef} className="pb-4"/>
         </div>
