@@ -8,7 +8,7 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata = {
-  title: 'Samriddhi Sivakumar | Portfolio',
+  title: 'Samriddhi Sivakumar',
   description: 'Data Scientist & Software Engineer. Interactive dual-mode portfolio.',
 };
 

@@ -39,7 +39,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
         <div className="flex-1 text-center md:text-left z-10 flex flex-col items-center md:items-start">
             <Reveal>
               <div className={`inline-flex items-center gap-2 px-4 py-2 ${themeMode === 'dark' ? 'bg-white/5' : 'bg-white/80'} backdrop-blur-md rounded-full border ${theme.border} text-sm font-medium ${theme.accentPrimary} mb-8 shadow-sm`}>
-                <Sparkles size={14} /> Open to Work • Summer 2025
+                <Sparkles size={14} /> Open to Work • Summer 2026
               </div>
             </Reveal>
             
@@ -53,7 +53,15 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             <Reveal delay={600}>
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                     <button onClick={() => scrollTo('projects')} className={`px-8 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105 ${theme.buttonPrimary}`}>View Work</button>
-                    <button className={`flex items-center gap-2 px-8 py-4 rounded-full font-bold transition-all hover:scale-105 border ${theme.border} ${theme.buttonSecondary}`}><FileText size={18} /> Download Resume</button>
+                    {/* UPDATED: Download Resume Button is now a real link pointing to the public folder */}
+                    <a 
+                      href="/SamriddhiSivakumar_Resume.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2 px-8 py-4 rounded-full font-bold transition-all hover:scale-105 border ${theme.border} ${theme.buttonSecondary}`}
+                    >
+                      <FileText size={18} /> Download Resume
+                    </a>
                 </div>
             </Reveal>
         </div>
@@ -81,9 +89,9 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
         <Reveal><h2 className={`text-2xl md:text-4xl font-bold mb-16 flex items-center justify-start gap-4 ${theme.text}`}><Hexagon className={`${theme.accentPrimary} fill-current opacity-20`} size={24} />Technical Expertise</h2></Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: <Database size={40} />, title: "Data Science", desc: "Python, Pandas, D3.js, PyTorch", color: theme.accentPrimary },
-            { icon: <Code2 size={40} />, title: "Full Stack", desc: "React, Next.js, Node, Tailwind", color: theme.accentSecondary },
-            { icon: <Cpu size={40} />, title: "Systems", desc: "C++, Rust, Docker, AWS", color: theme.accentPrimary },
+            { icon: <Database size={40} />, title: "Data Science & AI", desc: "PyTorch, TensorFlow, Pandas, OpenCV, Hugging Face, D3.js", color: theme.accentPrimary },
+            { icon: <Code2 size={40} />, title: "Full Stack & Tools", desc: "React, Next.js, Node, PostgreSQL, MongoDB, AWS, Docker", color: theme.accentSecondary },
+            { icon: <Cpu size={40} />, title: "Languages", desc: "Python, Java, C++, TypeScript, SQL, Go", color: theme.accentPrimary },
           ].map((item, i) => (
             <Reveal key={i} delay={i * 200}>
               <div className={`p-8 ${theme.bgSoft}/50 border ${theme.border} rounded-3xl backdrop-blur-sm hover:border-teal-400/30 transition-all group shadow-sm hover:shadow-lg`}>
@@ -181,8 +189,8 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                             Reach out today to discuss your project needs and start collaborating on something amazing!
                         </p>
                         <div className="flex gap-4">
-                             <a href="#" className={`p-4 rounded-2xl ${theme.bg} hover:${theme.accentPrimary} transition-colors border ${theme.border} ${theme.text}`}><Github size={24} /></a>
-                             <a href="#" className={`p-4 rounded-2xl ${theme.bg} hover:${theme.accentSecondary} transition-colors border ${theme.border} ${theme.text}`}><Linkedin size={24} /></a>
+                             <a href="https://github.com/SamriddhiS2" target="_blank" rel="noreferrer" className={`p-4 rounded-2xl ${theme.bg} hover:${theme.accentPrimary} transition-colors border ${theme.border} ${theme.text}`}><Github size={24} /></a>
+                             <a href="https://linkedin.com/in/samriddhisivakumar" target="_blank" rel="noreferrer" className={`p-4 rounded-2xl ${theme.bg} hover:${theme.accentSecondary} transition-colors border ${theme.border} ${theme.text}`}><Linkedin size={24} /></a>
                         </div>
                     </div>
                     
@@ -198,11 +206,11 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Name</label>
-                                        <input required type="text" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="Samriddhi Sivakumar" />
+                                        <input required type="text" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="Jane Doe" />
                                     </div>
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Email</label>
-                                        <input required type="email" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="samriddhi@example.com" />
+                                        <input required type="email" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="jane@example.com" />
                                     </div>
                                 </div>
                                 <div>
