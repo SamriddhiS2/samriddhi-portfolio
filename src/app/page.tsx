@@ -11,21 +11,30 @@ import { VisualView } from '../components/views/VisualView';
 export default function App() {
   const [mounted, setMounted] = useState(false);
   const [mode, setMode] = useState<AppMode>('intro'); 
-  const [themeMode, setThemeMode] = useState<ThemeMode>('dark');
+  const [themeMode, setThemeMode] = useState<ThemeMode>('dark'); // Default to dark
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const savedMode = localStorage.getItem('portfolioMode') as AppMode;
     if (savedMode) setMode(savedMode);
+
+    const savedTheme = localStorage.getItem('portfolioTheme') as ThemeMode;
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setThemeMode(savedTheme);
+    }
+    
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (mounted) localStorage.setItem('portfolioMode', mode);
-  }, [mode, mounted]);
+    if (mounted) {
+      localStorage.setItem('portfolioMode', mode);
+      localStorage.setItem('portfolioTheme', themeMode);
+    }
+  }, [mode, themeMode, mounted]);
 
   const theme = themes[themeMode];
-  const nameTyped = "Samriddhi Sivakumar";
+  const nameTyped = "Samriddhi Sivakumar"; 
   const toggleTheme = () => setThemeMode(prev => prev === 'dark' ? 'light' : 'dark');
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -48,23 +57,20 @@ export default function App() {
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 w-full z-50 ${themeMode === 'dark' ? 'bg-slate-900/90' : 'bg-slate-50/90'} backdrop-blur-lg border-b ${theme.border}`}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo / Brand */}
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setMode('intro')} >
-            <div className={`w-8 h-8 rounded-lg overflow-hidden shadow-md flex items-center justify-center ${theme.buttonPrimary}`}>
-                <Terminal size={18} className="text-white" />
+          <div className="flex items-center gap-4 cursor-pointer" onClick={() => setMode('intro')} >
+            <div className={`w-10 h-10 rounded-full overflow-hidden shadow-md bg-white border border-slate-200 flex items-center justify-center p-1`}>
+                <img src="/logo.png" alt="SS Logo" className="w-full h-full object-contain dark:invert" />
             </div>
-            <div className="font-bold tracking-tight text-lg">
-                <span className={theme.navText}>{nameTyped}</span>
-            </div>
+            <div className="font-bold tracking-tight text-lg"><span className={theme.navText}>{nameTyped}</span></div>
           </div>
 
           <div className="hidden md:flex items-center gap-4 ml-auto">
             <div className="flex items-center gap-6 text-sm font-medium pr-2">
-                <button onClick={() => handleNavClick('about')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>About</button>
-                <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Education</button>
-                <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Experience</button>
-                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Work</button>
-                <button onClick={() => handleNavClick('contact')} className={`${theme.textMuted} hover:${theme.accentPrimary} transition-colors`}>Contact</button>
+                <button onClick={() => handleNavClick('about')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>About</button>
+                <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Education</button>
+                <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Experience</button>
+                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Work</button>
+                <button onClick={() => handleNavClick('contact')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             
             <div className={`w-px h-6 ${theme.separator}`}></div>
@@ -97,11 +103,11 @@ export default function App() {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
           <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
-              <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>About</button>
-              <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Education</button>
-              <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Experience</button>
-              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Work</button>
-              <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} hover:${theme.accentPrimary}`}>Contact</button>
+              <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>About</button>
+              <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Education</button>
+              <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Experience</button>
+              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Work</button>
+              <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Contact</button>
               
               <div className={`w-full h-px ${theme.separator} my-3`}></div>
               
@@ -126,17 +132,17 @@ export default function App() {
       <footer className={`py-8 text-center ${theme.textMuted} text-sm border-t ${theme.border} mt-auto`}>
         <div className="flex flex-col items-center gap-4">
             <div className="flex flex-wrap justify-center gap-6 font-medium text-xs md:text-sm">
-                <button onClick={() => setMode('intro')} className="hover:text-emerald-400 transition-colors">Home</button>
-                <button onClick={() => handleNavClick('about')} className="hover:text-emerald-400 transition-colors">About</button>
-                <button onClick={() => handleNavClick('education')} className="hover:text-emerald-400 transition-colors">Education</button>
-                <button onClick={() => handleNavClick('experience')} className="hover:text-emerald-400 transition-colors">Experience</button>
-                <button onClick={() => handleNavClick('projects')} className="hover:text-emerald-400 transition-colors">Work</button>
-                <button onClick={() => handleNavClick('contact')} className="hover:text-emerald-400 transition-colors">Contact</button>
+                <button onClick={() => setMode('intro')} className={`${theme.hoverText} transition-colors`}>Home</button>
+                <button onClick={() => handleNavClick('about')} className={`${theme.hoverText} transition-colors`}>About</button>
+                <button onClick={() => handleNavClick('education')} className={`${theme.hoverText} transition-colors`}>Education</button>
+                <button onClick={() => handleNavClick('experience')} className={`${theme.hoverText} transition-colors`}>Experience</button>
+                <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Work</button>
+                <button onClick={() => handleNavClick('contact')} className={`${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             <div className="flex justify-center gap-6 mt-2">
-                <a href="#" className={`hover:${theme.accentPrimary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
-                <a href="#" className={`hover:${theme.accentSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
-                <a href="#" className={`hover:${theme.accentPrimary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
+                <a href="#" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
+                <a href="#" className={`${theme.hoverTextSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
+                <a href="#" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
             </div>
             <p className="opacity-80 font-medium mt-2">© 2026 Samriddhi Sivakumar.</p>
         </div>
