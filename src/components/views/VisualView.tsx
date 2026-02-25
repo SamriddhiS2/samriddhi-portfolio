@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Send, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
+import { ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
 import { Reveal } from '../utilities';
 import { useTypingEffect } from '../../hooks';
 import { Theme, ThemeMode, projects, experience, education } from '../../data/portfolio';
@@ -191,7 +191,10 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                 <div className="flex-1 w-full aspect-video rounded-3xl overflow-hidden relative group shadow-2xl">
                   <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
                   <div className={`absolute inset-4 ${theme.bg} rounded-3xl flex items-center justify-center border ${theme.border}`}>
-                    <div className={`${theme.textMuted} font-mono text-sm opacity-50 flex flex-col items-center gap-4`}><Code2 size={48} /><span>{project.title}.exe</span></div>
+                    <div className={`${theme.textMuted} font-mono text-sm opacity-50 flex flex-col items-center gap-4`}>
+                      <Code2 size={48} />
+                      <span>{project.title.toLowerCase()}.exe</span>
+                    </div>
                   </div>
                 </div>
                 <div className="flex-1">
@@ -268,7 +271,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all resize-none`} 
-                                        placeholder="I'd love to chat about a potential opportunity or just say hi..."
+                                        placeholder="I'd love to chat about a potential opportunity, a new project, or just say hi! :)"
                                     ></textarea>
                                 </div>
                                 <button disabled={formStatus === 'submitting'} type="submit" className={`w-full py-5 rounded-2xl font-bold shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2 ${theme.buttonPrimary} disabled:opacity-70`}>
