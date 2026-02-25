@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Send, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
 import { Reveal } from '../utilities';
+import { useTypingEffect } from '../../hooks';
 import { Theme, ThemeMode, projects, experience, education } from '../../data/portfolio';
 
 interface VisualViewProps {
@@ -11,6 +12,8 @@ interface VisualViewProps {
 
 export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
   const [formStatus, setFormStatus] = useState<'idle'|'submitting'|'success'>('idle');
+  const titleTyped = useTypingEffect("Samriddhi Sivakumar");
+
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -39,7 +42,13 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                 <Sparkles size={14} /> Open to Work • Summer 2025
               </div>
             </Reveal>
-            <Reveal delay={200}><h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 ${theme.text}`}>Samriddhi Sivakumar</h1></Reveal>
+            
+            <Reveal delay={200}>
+              <h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 ${theme.text}`}>
+                {titleTyped}<span className={`animate-pulse ${theme.accentPrimary}`}>|</span>
+              </h1>
+            </Reveal>
+            
             <Reveal delay={400}><p className={`text-lg md:text-2xl ${theme.textMuted} max-w-2xl leading-relaxed mb-8 font-light text-center md:text-left`}>Transforming Complex Data into Actionable Intelligence.</p></Reveal>
             <Reveal delay={600}>
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -54,7 +63,8 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             <Reveal delay={300}>
                 <div className="relative w-64 h-64 md:w-96 md:h-96 group">
                     <div className={`absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full blur-2xl opacity-50 group-hover:opacity-70 transition-opacity duration-500`}></div>
-                      <div className={`relative w-full h-full rounded-full border-4 ${theme.border} shadow-2xl overflow-hidden bg-slate-200 flex items-center justify-center`}>
+                    
+                    <div className={`relative w-full h-full rounded-full border-4 ${theme.border} shadow-2xl overflow-hidden bg-slate-200 flex items-center justify-center`}>
                         <img 
                           src="/profile.jpeg" 
                           alt="Samriddhi Sivakumar" 
@@ -179,7 +189,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                     <div>
                         {formStatus === 'success' ? (
                             <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in">
-                                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4"><CheckCircle size={32} /></div>
+                                <div className={`w-16 h-16 ${themeMode === 'dark' ? 'bg-teal-500/20 text-teal-400' : 'bg-teal-100 text-teal-600'} rounded-full flex items-center justify-center mb-4`}><CheckCircle size={32} /></div>
                                 <h3 className={`text-2xl font-bold ${theme.text} mb-2`}>Message Sent!</h3>
                                 <p className={theme.textMuted}>Thanks for reaching out.</p>
                             </div>

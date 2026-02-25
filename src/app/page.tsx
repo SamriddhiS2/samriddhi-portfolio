@@ -33,6 +33,7 @@ export default function App() {
     }
   }, [mode, themeMode, mounted]);
 
+  // MOBILE GUARD: Force visual mode if screen is small and user is on terminal mode
   useEffect(() => {
     if (!mounted) return;
     const enforceMobileVisual = () => {
@@ -70,12 +71,14 @@ export default function App() {
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 w-full z-50 ${themeMode === 'dark' ? 'bg-slate-900/90' : 'bg-slate-50/90'} backdrop-blur-lg border-b ${theme.border}`}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          
           {/* Logo / Brand */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setMode('intro')} >
             <div className={`w-8 h-8 rounded-lg overflow-hidden shadow-md flex items-center justify-center ${theme.buttonPrimary}`}>
                 <Terminal size={18} className="text-white" />
             </div>
-            <div className="font-bold tracking-tight text-lg">
+            {/* HIDDEN on mobile screens OR when in Intro Mode */}
+            <div className={`font-bold tracking-tight text-lg ${mode === 'intro' ? 'hidden' : 'hidden md:block'}`}>
                 <span className={theme.navText}>{nameTyped}</span>
             </div>
           </div>
@@ -116,7 +119,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* MOBILE MENU - Mode switchers completely removed */}
+      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
           <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
               <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>About</button>
@@ -124,17 +127,6 @@ export default function App() {
               <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Experience</button>
               <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Work</button>
               <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Contact</button>
-              
-              <div className={`w-full h-px ${theme.separator} my-3`}></div>
-              
-              <div className="grid grid-cols-2 gap-3">
-                   <button onClick={() => { setMode('terminal'); setIsMenuOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-2xl border ${theme.border} ${mode === 'terminal' ? theme.buttonPrimary : theme.text} text-sm font-bold shadow-sm`}>
-                        Tech
-                   </button>
-                   <button onClick={() => { setMode('visual'); setIsMenuOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-2xl border ${theme.border} ${mode === 'visual' ? theme.buttonPrimary : theme.text} text-sm font-bold shadow-sm`}>
-                        <Eye size={16} /> Visual
-                   </button>
-              </div>
           </div>
       )}
 
