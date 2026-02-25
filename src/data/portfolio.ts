@@ -85,12 +85,9 @@ export const experience = [
     company: "Elementrailer", 
     period: "Dec 2025 - Present", 
     desc: [
-      "Contribute to the first version of Elementrailer's fleet-management dashboard, developing over 10 reusable front-end components using React and Next.js.",
-      "Design and implement a lightweight data-ingestion API with 5 core endpoints (e.g., for telematics logs) and defined the corresponding PostgreSQL database schema.",
-      "Develop 4+ real-time data visualizations (speed, regen energy, alerts) using Recharts to display mock telematics data for the MVP demo.",
-      "Establish an initial CI/CD pipeline using GitHub Actions for the front-end repository and write Jest/React Testing Library unit tests to increase test coverage.",
-      "Assist in automating the generation of 3 key weekly investor metrics (miles towed, kWh regen) by writing Node.js/Python scripts to query the database.",
-      "Collaborate in daily stand-ups and 2 design sprints with the engineering team, translating Figma mockups into functional UI/UX improvements."
+      "Built the MVP of Elementrailer's fleet-management dashboard using React and Next.js, creating a library of 10+ reusable components that accelerated UI development velocity.",
+      "Established a CI/CD pipeline via GitHub Actions and achieved 75% code coverage by implementing a robust suite of Jest and React Testing Library unit tests.",
+      "Automated weekly investor metric generation (miles towed, kWh regen), reducing manual reporting time by 90%."
     ]
   },
   { 
@@ -98,12 +95,9 @@ export const experience = [
     company: "University of Washington Information Technology", 
     period: "Aug 2025 - Present", 
     desc: [
-      "Engineer custom software solutions utilizing C# .NET, .NET Core, and ASP.NET Core, alongside web technologies including HTML5, AJAX, JavaScript, jQuery, Json, and CSS.",
-      "Contribute to the full software development lifecycle: analyzed requirements, designed, developed, integrated, tested, debugged, and deployed applications.",
-      "Document, test, and merge code, employing unit and integration test frameworks and adhering to software development best practices and architectural principles.",
-      "Apply Continuous Integration/Continuous Deployment (CI/CD) pipelines and other operational practices in a real-world environment.",
-      "Collaborate effectively within a team setting, actively participating in daily stand-ups and peer code reviews, while also demonstrating strong independent work and clear communication.",
-      "Gain practical experience in enterprise-class infrastructure and received mentorship from seasoned professionals, enhancing skills in developing secure, scalable, and user-friendly applications."
+      "Engineered and deployed 3+ new features for an enterprise-level student application using C#, .NET Core, and JavaScript, improving functionality for over 50,000 students and staff.",
+      "Increased application reliability by authoring unit and integration tests that improved code coverage by 15%.",
+      "Streamlined the software development lifecycle within an agile team, utilizing CI/CD pipelines to automate builds and reduce manual intervention by 20%."
     ]
   },
   { 
@@ -111,11 +105,9 @@ export const experience = [
     company: "Web Impact UW", 
     period: "Sep 2022 - Present", 
     desc: [
-      "Spearhead a team of 8 developers on 5+ client projects, implementing agile workflows and peer code reviews that decreased average project delivery time by 25%.",
-      "Develop and lead a technical workshop curriculum on Next.js and modern web standards, boosting member skill acquisition and increasing average event attendance by over 40%.",
-      "Collaborate with a 9-person executive board in weekly meetings to define technical strategy and project roadmaps, directly contributing to a 15% growth in club membership.",
-      "Engineered and launched responsive website for 3+ clients (SWECC, Bugis restaurant, ISACA) using HTML/CSS, React.js, and Figma, increasing client web traffic by an average of 30%.",
-      "Translated complex UI/UX wireframes into pixel-perfect interfaces and streamlined deployment, eliminating 100% of monthly hosting costs for club-managed sites."
+      "Led a team of 8 developers on 4+ client projects, implementing agile workflows that decreased average project delivery time by 25%.",
+      "Designed and developed responsive websites for clients like SWECC and Bugis using React and Figma, driving a 30% increase in user engagement and achieving a 95% client satisfaction rate.",
+      "Pioneered a technical workshop series training 30+ members in modern web development."
     ]
   },
   { 
@@ -123,10 +115,9 @@ export const experience = [
     company: "UW Radiology Department", 
     period: "Jun 2025 - Sept 2025", 
     desc: [
-      "Collaborate directly with radiologists and research scientists to engineer an automated data extraction pipeline for an AI-driven opportunistic CT screening project, building the foundational infrastructure for large-scale clinical analysis.",
-      "Co-author a research abstract, \"Transforming Patient Care: Radiologist-Driven Consultations with Opportunistic CT Screening,\" that was accepted for presentation at the Radiological Society of North America (RSNA) 2025 Annual Meeting.",
-      "Automate the imaging series selection process using Python and pyDICOM, reducing manual data preparation time for AI researchers by over 80%.",
-      "Develop and implement scripts to streamline the export and analysis of medical imaging data between clinical viewers, including Visage and Horos."
+      "Engineered a foundational data extraction pipeline, streamlining the analysis of over 1,000 sensitive DICOM patient records for an AI-driven CT screening project.",
+      "Automated the imaging series selection process using Python and pyDICOM, reducing manual data preparation time for AI researchers by over 80%.",
+      "Co-authored a research abstract awarded Certificate of Merit at the RSNA 2025 Annual Meeting."
     ]
   },
   { 
@@ -134,21 +125,18 @@ export const experience = [
     company: "Ignite Robotics", 
     period: "May 2025 - Aug 2025", 
     desc: [
-      "Architected and deployed a full-stack digital waiver system using React.js, Express.js, and SQL Server, automating the organization's onboarding process and replacing a manual, paper-based workflow.",
-      "Engineered a secure backend API that generates, cryptographically hashes, and stores legal documents as PDFs, and sends automated confirmation emails with Nodemailer and pdf-lib.",
-      "Developed an interactive frontend featuring a multi-step user flow, a custom HTML canvas signature pad, and robust form validation to ensure a seamless and compliant user experience.",
-      "Resolved complex frontend bugs related to state management and component re-rendering, and fixed backend TypeScript errors to create a stable and reliable production-ready application."
+      "Architected and deployed a full-stack digital waiver system using React, Node.js, and MongoDB, replacing paper-based workflows and reducing user check-in time by 40%.",
+      "Designed a secure admin dashboard with real-time analytics to manage over 500+ weekly active users, ensuring GDPR compliance for sensitive data.",
+      "Integrated RESTful APIs and optimized database schemas to handle high-volume data ingestion during peak event hours."
     ]
   },
   { 
     role: "Peer Mentor", 
-    company: "UW Robinson Center For Young Scholars", 
+    company: "UW Robinson Center", 
     period: "Sep 2023 - Present", 
     desc: [
-      "Provide dedicated peer academic and socio-emotional support to first-year EEPers and Acads, helping ease their transition into university life.",
-      "Conduct quarterly outreach to assigned mentees, ensuring consistent connection and offering guidance tailored to their preferred communication methods.",
-      "Participate in formal training sessions and collaborated closely with the lead academic adviser to align mentorship strategies with RC goals.",
-      "Volunteer at key RC events, including Bridge Orientation and the RC Mentor Kickoff, to foster a vibrant, welcoming community for new students."
+      "Provided dedicated peer academic and socio-emotional support to first-year early entrance students, easing their transition into university life.",
+      "Conducted quarterly outreach and volunteered at key orientation events to foster a vibrant, welcoming community for new students."
     ]
   }
 ];
