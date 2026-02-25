@@ -43,7 +43,7 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
     let response: HistoryLine[] = [];
     switch(command) {
       case 'help': response = [{ type: 'info', content: 'Available commands: ls, view <id>, whoami, skills, contact, clear' }]; break;
-      case 'whoami': response = [{ type: 'text', content: 'Samriddhi Sivakumar | Data Scientist & Software Engineer' }]; break;
+      case 'whoami': response = [{ type: 'text', content: 'Samriddhi Sivakumar | CS & Data Science @ UW' }]; break;
       case 'ls': 
       case 'projects': response = [{ type: 'info', content: 'ID              | NAME\n----------------+------------------' }, ...projects.map(p => ({ type: 'text', content: `${p.id.padEnd(15)} | ${p.title}` } as HistoryLine)), { type: 'system', content: '\nHint: Type "view urban-pulse" to read details.' }]; break;
       case 'view':
@@ -55,8 +55,20 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
         if (project) { response = [{ type: 'success', content: `>> Opening ${project.title}...` }, { type: 'info', content: `Tech: ${project.tech.join(', ')}` }, { type: 'link', content: `Link: ${project.link}` }, { type: 'text', content: project.details }]; }
         else { response = [{ type: 'error', content: `Project "${argument}" not found. Type "ls" to see project IDs.` }]; }
         break;
-      case 'skills': response = [{ type: 'info', content: 'React, Tailwind, Next.js, Node, Python, C++, PyTorch, Pandas' }]; break;
-      case 'contact': response = [{ type: 'link', content: 'hello@samriddhi.dev' }]; break;
+      case 'skills': 
+        response = [
+            { type: 'info', content: 'Languages: Python, Java, C++, TypeScript, SQL, Go' },
+            { type: 'info', content: 'Full Stack: React, Next.js, Node, PostgreSQL, AWS, Docker' },
+            { type: 'info', content: 'Data Science: PyTorch, TensorFlow, Pandas, OpenCV, Hugging Face, D3.js' }
+        ]; 
+        break;
+      case 'contact': 
+        response = [
+            { type: 'link', content: 'Email: ssamriddhi.work@gmail.com' },
+            { type: 'link', content: 'GitHub: github.com/SamriddhiS2' },
+            { type: 'link', content: 'LinkedIn: linkedin.com/in/samriddhisivakumar' }
+        ]; 
+        break;
       case 'clear': setHistory([]); setInput(''); return;
       default: response = [{ type: 'error', content: `Command not found: ${command}` }];
     }
@@ -65,7 +77,6 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
     setInput('');
   };
 
-  // Handle Tab Autocomplete and Up/Down Arrows
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'ArrowUp') {
         e.preventDefault();
