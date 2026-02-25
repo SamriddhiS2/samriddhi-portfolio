@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Minus, Maximize2 } from 'lucide-react';
 import { Theme, ThemeMode, projects } from '../../data/portfolio';
 
-type HistoryLine = { type: 'system' | 'info' | 'success' | 'error' | 'link' | 'text' | 'cmd'; content: string; };
+type HistoryLine = { type: 'system' | 'info' | 'success' | 'error' | 'link' | 'text' | 'cmd' | 'whoami'; content: string; };
 
 interface TerminalViewProps {
   theme: Theme;
@@ -43,7 +43,7 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
     let response: HistoryLine[] = [];
     switch(command) {
       case 'help': response = [{ type: 'info', content: 'Available commands: ls, view <id>, whoami, skills, contact, clear' }]; break;
-      case 'whoami': response = [{ type: 'text', content: 'Samriddhi Sivakumar | CS & Data Science @ UW' }]; break;
+      case 'whoami': response = [{ type: 'whoami', content: 'Samriddhi Sivakumar | CS & Data Science @ UW' }]; break;
       case 'ls': 
       case 'projects': response = [{ type: 'info', content: 'ID              | NAME\n----------------+------------------' }, ...projects.map(p => ({ type: 'text', content: `${p.id.padEnd(15)} | ${p.title}` } as HistoryLine)), { type: 'system', content: '\nHint: Type "view urban-pulse" to read details.' }]; break;
       case 'view':
@@ -52,7 +52,14 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
             break;
         }
         const project = projects.find(p => p.id === argument);
-        if (project) { response = [{ type: 'success', content: `>> Opening ${project.title}...` }, { type: 'info', content: `Tech: ${project.tech.join(', ')}` }, { type: 'link', content: `Link: ${project.link}` }, { type: 'text', content: project.details }]; }
+        if (project) { 
+            response = [
+                { type: 'success', content: `>> Opening ${project.title}...` }, 
+                { type: 'info', content: `Tech: ${project.tech.join(', ')}` }, 
+                { type: 'link', content: `Link: ${project.link}` }, 
+                { type: 'info', content: project.details } 
+            ]; 
+        }
         else { response = [{ type: 'error', content: `Project "${argument}" not found. Type "ls" to see project IDs.` }]; }
         break;
       case 'skills': 
@@ -114,11 +121,12 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, [history]);
 
-  const successColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600';
-  const infoColor = themeMode === 'dark' ? 'text-emerald-300' : 'text-emerald-600'; 
-  const errColor = themeMode === 'dark' ? 'text-rose-400' : 'text-rose-600';
-  const linkColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600';
-  const sysColor = themeMode === 'dark' ? 'text-slate-500' : 'text-slate-500';
+  // Distinct semantic colors
+  const successColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; // Teal
+  const infoColor = themeMode === 'dark' ? 'text-emerald-300' : 'text-emerald-600'; // Green
+  const errColor = themeMode === 'dark' ? 'text-rose-400' : 'text-rose-600'; // Red
+  const linkColor = themeMode === 'dark' ? 'text-teal-300' : 'text-teal-600'; // Teal Link
+  const sysColor = themeMode === 'dark' ? 'text-slate-500' : 'text-slate-500'; // Gray
 
   return (
     <div className="flex-1 flex items-center justify-center p-4 md:p-8 animate-in fade-in zoom-in duration-500">
@@ -136,7 +144,23 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
               {line.type === 'info' && <div className={infoColor}>{line.content}</div>}
               {line.type === 'success' && <div className={successColor}>{line.content}</div>}
               {line.type === 'error' && <div className={errColor}>{line.content}</div>}
-              {line.type === 'link' && <div className={`${linkColor} hover:underline cursor-pointer`}>{line.content}</div>}
+              
+              {/* Custom Whoami Render: Name no longer has font-bold */}
+              {line.type === 'whoami' && (
+                <div>
+                    <span className={`${successColor}`}>{line.content.split('|')[0].trim()} </span>
+                    <span className={sysColor}>|</span>
+                    <span className={`${infoColor} ml-1`}>{line.content.split('|')[1].trim()}</span>
+                </div>
+              )}
+
+              {line.type === 'link' && (
+                <div className={`${linkColor} hover:underline cursor-pointer`}>
+                  {line.content.startsWith('http') ? (
+                    <a href={line.content} target="_blank" rel="noopener noreferrer">{line.content}</a>
+                  ) : line.content}
+                </div>
+              )}
               {line.type === 'text' && <div className={theme.text}>{line.content}</div>}
             </div>
           ))}
