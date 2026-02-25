@@ -22,7 +22,8 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                Transforming Complex Data into Actionable Intelligence.
             </p>
             
-            <div className={`mb-12 inline-flex items-center gap-2 px-5 py-2 ${themeMode === 'dark' ? 'bg-white/5' : 'bg-white/80'} backdrop-blur-md rounded-full border ${theme.border} shadow-sm`}>
+            {/* HIDDEN ON MOBILE: "Select Your Experience" Badge */}
+            <div className={`hidden md:inline-flex mb-12 items-center gap-2 px-5 py-2 ${themeMode === 'dark' ? 'bg-white/5' : 'bg-white/80'} backdrop-blur-md rounded-full border ${theme.border} shadow-sm`}>
                 <span className={`relative flex h-3 w-3`}>
                   <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${theme.fillAccent} opacity-75`}></span>
                   <span className={`relative inline-flex rounded-full h-3 w-3 ${theme.fillAccent}`}></span>
@@ -30,10 +31,11 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                 <span className={`text-sm font-semibold tracking-wide uppercase ${theme.text} opacity-90`}>Select Your Experience</span>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+                {/* HIDDEN ON MOBILE: Developer/Technical Option */}
                 <button 
                     onClick={() => setMode('terminal')}
-                    className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex flex-col justify-between h-full`}
+                    className={`hidden md:flex group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex-col justify-between h-full`}
                 >
                     <div>
                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
@@ -54,6 +56,7 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                     </div>
                 </button>
 
+                {/* ALWAYS VISIBLE: Visual/Recruiter Option */}
                 <button 
                     onClick={() => setMode('visual')}
                     className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between h-full`}
