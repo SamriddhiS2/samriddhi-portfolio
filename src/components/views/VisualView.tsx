@@ -28,7 +28,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
     
     try {
         // FormSubmit AJAX API
-        const res = await fetch("https://formsubmit.co/ajax/sivakumar.samriddhi@gmail.com", {
+        const res = await fetch("https://formsubmit.co/ajax/ssamriddhi.work@gmail.com", {
             method: "POST",
             headers: { 
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             throw new Error("Failed to send");
         }
     } catch (err) {
-        alert("Sorry, there was an issue sending your message. Please try emailing me directly at sivakumar.samriddhi@gmail.com!");
+        alert("Sorry, there was an issue sending your message. Please try emailing me directly at ssamriddhi.work@gmail.com!");
         setFormStatus('idle');
     }
   };
