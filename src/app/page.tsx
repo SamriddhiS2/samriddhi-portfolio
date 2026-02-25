@@ -57,11 +57,14 @@ export default function App() {
       {/* Navbar */}
       <nav className={`fixed top-0 left-0 w-full z-50 ${themeMode === 'dark' ? 'bg-slate-900/90' : 'bg-slate-50/90'} backdrop-blur-lg border-b ${theme.border}`}>
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-4 cursor-pointer" onClick={() => setMode('intro')} >
-            <div className={`w-10 h-10 rounded-full overflow-hidden shadow-md bg-white border border-slate-200 flex items-center justify-center p-1`}>
-                <img src="/logo.png" alt="SS Logo" className="w-full h-full object-contain dark:invert" />
+          {/* Logo / Brand */}
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setMode('intro')} >
+            <div className={`w-8 h-8 rounded-lg overflow-hidden shadow-md flex items-center justify-center ${theme.buttonPrimary}`}>
+                <Terminal size={18} className="text-white" />
             </div>
-            <div className="font-bold tracking-tight text-lg"><span className={theme.navText}>{nameTyped}</span></div>
+            <div className="font-bold tracking-tight text-lg">
+                <span className={theme.navText}>{nameTyped}</span>
+            </div>
           </div>
 
           <div className="hidden md:flex items-center gap-4 ml-auto">
