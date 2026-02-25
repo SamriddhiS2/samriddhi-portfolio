@@ -159,12 +159,44 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
               )}
 
               {line.type === 'link' && typeof line.content === 'string' && (
-                <div className={`${linkColor} hover:underline cursor-pointer`}>
-                  {line.content.startsWith('http') || line.content.includes('Email:') ? (
-                    <a href={line.content.includes('Email:') ? `mailto:${line.content.split('Email: ')[1]}` : line.content.replace('GitHub: ', '').replace('LinkedIn: ', '')} target="_blank" rel="noopener noreferrer">{line.content}</a>
-                  ) : line.content}
-                </div>
+                (() => {
+                  let url = "";
+                  const text = line.content;
+                  if (text.includes('Email: ')) url = `mailto:${text.split('Email: ')[1].trim()}`;
+                  else if (text.includes('GitHub: ')) url = text.split('GitHub: ')[1].trim();
+                  else if (text.includes('LinkedIn: ')) url = text.split('LinkedIn: ')[1].trim();
+                  else if (text.includes('Link: ')) url = text.split('Link: ')[1].trim();
+                  else if (text.startsWith('http')) url = text.trim();
+
+                  const handleLinkClick = (e: React.MouseEvent) => {
+                      if (url && (e.metaKey || e.ctrlKey)) {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (url.startsWith('mailto:')) {
+                              window.location.href = url;
+                          } else {
+                              window.open(url, '_blank', 'noopener,noreferrer');
+                          }
+                      }
+                  };
+
+                  return (
+                      <div 
+                          className={`${linkColor} hover:underline cursor-pointer group flex items-center w-max`}
+                          onClick={handleLinkClick}
+                          title="Cmd/Ctrl + Click to follow link"
+                      >
+                          <span>{text}</span>
+                          {url && (
+                              <span className="opacity-0 group-hover:opacity-60 text-xs ml-3 font-sans italic transition-opacity duration-200">
+                                  (Cmd/Ctrl + Click)
+                              </span>
+                          )}
+                      </div>
+                  );
+                })()
               )}
+
               {line.type === 'text' && typeof line.content === 'string' && <div className={theme.text}>{line.content}</div>}
 
               {line.type === 'table' && Array.isArray(line.content) && (
