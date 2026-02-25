@@ -91,13 +91,22 @@ export const experience = [
     ]
   },
   { 
-    role: "Student Assistant - App Dev", 
+    role: "Student Assistant", 
     company: "University of Washington Information Technology", 
     period: "Aug 2025 - Present", 
     desc: [
       "Engineered and deployed 3+ new features for an enterprise-level student application using C#, .NET Core, and JavaScript, improving functionality for over 50,000 students and staff.",
       "Increased application reliability by authoring unit and integration tests that improved code coverage by 15%.",
       "Streamlined the software development lifecycle within an agile team, utilizing CI/CD pipelines to automate builds and reduce manual intervention by 20%."
+    ]
+  },
+  { 
+    role: "Peer Mentor", 
+    company: "UW Robinson Center", 
+    period: "Sep 2023 - Present", 
+    desc: [
+      "Provided dedicated peer academic and socio-emotional support to first-year early entrance students, easing their transition into university life.",
+      "Conducted quarterly outreach and volunteered at key orientation events to foster a vibrant, welcoming community for new students."
     ]
   },
   { 
@@ -128,15 +137,6 @@ export const experience = [
       "Architected and deployed a full-stack digital waiver system using React, Node.js, and MongoDB, replacing paper-based workflows and reducing user check-in time by 40%.",
       "Designed a secure admin dashboard with real-time analytics to manage over 500+ weekly active users, ensuring GDPR compliance for sensitive data.",
       "Integrated RESTful APIs and optimized database schemas to handle high-volume data ingestion during peak event hours."
-    ]
-  },
-  { 
-    role: "Peer Mentor", 
-    company: "UW Robinson Center", 
-    period: "Sep 2023 - Present", 
-    desc: [
-      "Provided dedicated peer academic and socio-emotional support to first-year early entrance students, easing their transition into university life.",
-      "Conducted quarterly outreach and volunteered at key orientation events to foster a vibrant, welcoming community for new students."
     ]
   }
 ];
