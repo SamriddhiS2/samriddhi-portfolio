@@ -38,20 +38,25 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                     className={`hidden md:flex group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex-col justify-between h-full`}
                 >
                     <div>
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <Terminal size={100} className={themeMode === 'dark' ? "text-white/10" : "text-slate-900/5"} />
+                        {/* Top Right Watermark - Fixed Opacity and Colors */}
+                        <div className="absolute top-0 right-0 p-6">
+                            <Terminal 
+                                size={100} 
+                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/20 group-hover:text-white/40' : 'text-slate-900/10 group-hover:text-slate-900/20'}`} 
+                            />
                         </div>
+                        
                         <div className={`inline-flex p-3 rounded-2xl mb-4 ${themeMode === 'dark' ? 'bg-teal-500/20 text-teal-100' : 'bg-teal-100 text-teal-800'}`}>
                             <Code2 size={24} className={themeMode === 'dark' ? "text-teal-400" : "text-teal-600"} />
                         </div>
                         <h3 className={`text-2xl font-bold mb-2 ${theme.text}`}>Technical</h3>
-                        <p className={`${theme.textMuted} mb-6`}>
+                        <p className={`${theme.textMuted} mb-6 relative z-10`}>
                             For Developers & Engineers.
                             <span className="block text-sm opacity-70 mt-2 font-light">Command-line interface to view raw data, logs, and system stats.</span>
                         </p>
                     </div>
                     
-                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}>
+                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md relative z-10`}>
                          <Terminal size={16} /> Launch Terminal
                     </div>
                 </button>
@@ -62,20 +67,25 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                     className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between h-full`}
                 >
                     <div>
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <Sparkles size={100} className={themeMode === 'dark' ? "text-white/10" : "text-slate-900/5"} />
+                        {/* Top Right Watermark - Fixed Opacity and Colors */}
+                        <div className="absolute top-0 right-0 p-6">
+                            <Sparkles 
+                                size={100} 
+                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/20 group-hover:text-white/40' : 'text-slate-900/10 group-hover:text-slate-900/20'}`} 
+                            />
                         </div>
+                        
                         <div className={`inline-flex p-3 rounded-2xl mb-4 ${theme.homeIconBg} ${theme.homeIconColor}`}>
                             <Eye size={24} />
                         </div>
                         <h3 className={`text-2xl font-bold mb-2 ${theme.text}`}>Visual</h3>
-                        <p className={`${theme.textMuted} mb-6`}>
+                        <p className={`${theme.textMuted} mb-6 relative z-10`}>
                             For Recruiters & Designers.
                             <span className="block text-sm opacity-70 mt-2 font-light">Interactive scrolling experience with visual case studies and animations.</span>
                         </p>
                     </div>
 
-                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}>
+                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md relative z-10`}>
                          View Portfolio <ArrowRight size={16} />
                     </div>
                 </button>
