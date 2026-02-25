@@ -58,7 +58,7 @@ export const TerminalView = ({ theme, themeMode }: TerminalViewProps) => {
   return (
     <div className="h-full flex items-center justify-center p-4 md:p-8 animate-in fade-in zoom-in duration-500">
       <div className={`w-full max-w-4xl ${theme.bgSoft}/90 backdrop-blur-xl rounded-xl border ${theme.border} shadow-2xl overflow-hidden flex flex-col h-[70vh] md:h-[600px]`}>
-        <div className={`bg-slate-950/20 px-4 py-3 flex items-center justify-between border-b ${theme.border}`}>
+        <div className={`px-4 py-3 flex items-center justify-between border-b ${theme.border} ${themeMode === 'dark' ? 'bg-slate-950/20' : 'bg-slate-100/60'}`}>
           <div className="flex gap-2"><div className="w-3 h-3 rounded-full bg-rose-400" /><div className="w-3 h-3 rounded-full bg-amber-400" /><div className="w-3 h-3 rounded-full bg-emerald-400" /></div>
           <div className={`text-sm ${theme.textMuted} font-mono flex items-center gap-2`}><Terminal size={14} /> guest@samriddhi-os</div>
           <div className={`flex gap-2 ${theme.textMuted}`}><Minus size={14} /><Maximize2 size={14} /></div>

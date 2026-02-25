@@ -34,7 +34,11 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
 
         {/* Text Content */}
         <div className="flex-1 text-center md:text-left z-10 flex flex-col items-center md:items-start">
-            <Reveal><div className={`inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border ${theme.border} text-sm font-medium ${theme.accentPrimary} mb-8 shadow-sm`}><Sparkles size={14} /> Open to Work • Summer 2025</div></Reveal>
+            <Reveal>
+              <div className={`inline-flex items-center gap-2 px-4 py-2 ${themeMode === 'dark' ? 'bg-white/5' : 'bg-white/80'} backdrop-blur-md rounded-full border ${theme.border} text-sm font-medium ${theme.accentPrimary} mb-8 shadow-sm`}>
+                <Sparkles size={14} /> Open to Work • Summer 2025
+              </div>
+            </Reveal>
             <Reveal delay={200}><h1 className={`text-5xl md:text-7xl font-bold tracking-tight mb-6 ${theme.text}`}>Samriddhi Sivakumar</h1></Reveal>
             <Reveal delay={400}><p className={`text-lg md:text-2xl ${theme.textMuted} max-w-2xl leading-relaxed mb-8 font-light text-center md:text-left`}>Transforming Complex Data into Actionable Intelligence.</p></Reveal>
             <Reveal delay={600}>
@@ -45,14 +49,17 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             </Reveal>
         </div>
 
-        {/* Profile Image / Placeholder */}
+        {/* Profile Image */}
         <div className="flex-1 flex justify-center z-10 mt-12 md:mt-0">
             <Reveal delay={300}>
                 <div className="relative w-64 h-64 md:w-96 md:h-96 group">
                     <div className={`absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full blur-2xl opacity-50 group-hover:opacity-70 transition-opacity duration-500`}></div>
-                    <div className={`relative w-full h-full rounded-full border-4 ${theme.border} shadow-2xl overflow-hidden bg-slate-200 flex items-center justify-center`}>
-                        {/* Placeholder Emoji - Replace with an actual image tag when you have a photo */}
-                        <span className="text-6xl md:text-8xl">👩‍💻</span>
+                      <div className={`relative w-full h-full rounded-full border-4 ${theme.border} shadow-2xl overflow-hidden bg-slate-200 flex items-center justify-center`}>
+                        <img 
+                          src="/profile.jpeg" 
+                          alt="Samriddhi Sivakumar" 
+                          className="w-full h-full object-cover" 
+                        />
                     </div>
                 </div>
             </Reveal>
@@ -181,16 +188,16 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Name</label>
-                                        <input required type="text" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all`} placeholder="Samriddhi Sivakumar" />
+                                        <input required type="text" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="Samriddhi Sivakumar" />
                                     </div>
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Email</label>
-                                        <input required type="email" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all`} placeholder="samriddhi@example.com" />
+                                        <input required type="email" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="samriddhi@example.com" />
                                     </div>
                                 </div>
                                 <div>
                                     <label className={`block text-sm font-medium ${theme.text} mb-2`}>Message</label>
-                                    <textarea required rows={5} className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all resize-none`} placeholder="Hi!"></textarea>
+                                    <textarea required rows={5} className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all resize-none`} placeholder="Hi!"></textarea>
                                 </div>
                                 <button disabled={formStatus === 'submitting'} type="submit" className={`w-full py-5 rounded-2xl font-bold shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2 ${theme.buttonPrimary} disabled:opacity-70`}>
                                     {formStatus === 'submitting' ? <Loader2 size={20} className="animate-spin"/> : null}
