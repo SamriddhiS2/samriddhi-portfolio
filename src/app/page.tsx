@@ -33,6 +33,19 @@ export default function App() {
     }
   }, [mode, themeMode, mounted]);
 
+  useEffect(() => {
+    if (!mounted) return;
+    const enforceMobileVisual = () => {
+      if (window.innerWidth < 768 && mode === 'terminal') {
+        setMode('visual');
+      }
+    };
+    
+    enforceMobileVisual();
+    window.addEventListener('resize', enforceMobileVisual);
+    return () => window.removeEventListener('resize', enforceMobileVisual);
+  }, [mode, mounted]);
+
   const theme = themes[themeMode];
   const nameTyped = "Samriddhi Sivakumar"; 
   const toggleTheme = () => setThemeMode(prev => prev === 'dark' ? 'light' : 'dark');
@@ -103,7 +116,7 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* MOBILE MENU - Mode switchers completely removed */}
       {isMenuOpen && (
           <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
               <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>About</button>
