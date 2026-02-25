@@ -136,10 +136,10 @@ export default function App() {
         {mode === 'visual' && <VisualView theme={theme} themeMode={themeMode} />}
       </main>
       
-      {/* Footer */}
-      <footer className={`py-8 text-center ${theme.textMuted} text-sm border-t ${theme.border} mt-auto`}>
-        <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-wrap justify-center gap-6 font-medium text-xs md:text-sm">
+      <footer className={`py-6 md:py-8 text-center ${theme.textMuted} border-t ${theme.border} mt-auto`}>
+        <div className="flex flex-col items-center gap-3 md:gap-4 px-4">
+            
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 font-medium text-xs md:text-sm">
                 <button onClick={() => setMode('intro')} className={`${theme.hoverText} transition-colors`}>Home</button>
                 <button onClick={() => handleNavClick('about')} className={`${theme.hoverText} transition-colors`}>About</button>
                 <button onClick={() => handleNavClick('education')} className={`${theme.hoverText} transition-colors`}>Education</button>
@@ -148,13 +148,13 @@ export default function App() {
                 <button onClick={() => handleNavClick('contact')} className={`${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             
-            <div className="flex justify-center gap-6 mt-2">
+            <div className="flex justify-center gap-4 md:gap-6 mt-1 md:mt-2">
                 <a href="https://github.com/SamriddhiS2" target="_blank" rel="noreferrer" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
                 <a href="https://linkedin.com/in/samriddhisivakumar" target="_blank" rel="noreferrer" className={`${theme.hoverTextSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
                 <a href="mailto:ssamriddhi.work@gmail.com" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
             </div>
             
-            <p className="opacity-80 font-medium mt-2">© 2026 Samriddhi Sivakumar.</p>
+            <p className="opacity-80 font-medium mt-1 md:mt-2 text-xs md:text-sm">© 2026 Samriddhi Sivakumar.</p>
         </div>
       </footer>
     </div>
