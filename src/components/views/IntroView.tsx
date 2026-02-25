@@ -38,11 +38,11 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                     className={`hidden md:flex group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex-col justify-between h-full`}
                 >
                     <div>
-                        {/* Top Right Watermark - Fixed Opacity and Colors */}
+                        {/* Top Right Watermark - Increased Contrast Opacity */}
                         <div className="absolute top-0 right-0 p-6">
                             <Terminal 
                                 size={100} 
-                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/20 group-hover:text-white/40' : 'text-slate-900/10 group-hover:text-slate-900/20'}`} 
+                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/30 group-hover:text-white/50' : 'text-slate-900/30 group-hover:text-slate-900/50'}`} 
                             />
                         </div>
                         
@@ -67,11 +67,11 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                     className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between h-full`}
                 >
                     <div>
-                        {/* Top Right Watermark - Fixed Opacity and Colors */}
+                        {/* Top Right Watermark - Increased Contrast Opacity */}
                         <div className="absolute top-0 right-0 p-6">
                             <Sparkles 
                                 size={100} 
-                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/20 group-hover:text-white/40' : 'text-slate-900/10 group-hover:text-slate-900/20'}`} 
+                                className={`transition-colors duration-300 ${themeMode === 'dark' ? 'text-white/30 group-hover:text-white/50' : 'text-slate-900/30 group-hover:text-slate-900/50'}`} 
                             />
                         </div>
                         
