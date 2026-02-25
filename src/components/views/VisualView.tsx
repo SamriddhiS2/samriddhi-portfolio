@@ -138,17 +138,42 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
       </section>
 
       {/* Education */}
-      <section id="education" className={`py-16 px-6 max-w-4xl mx-auto border-t ${theme.border} scroll-mt-28`}>
+      <section id="education" className={`py-16 px-6 max-w-5xl mx-auto border-t ${theme.border} scroll-mt-28`}>
         <Reveal><h2 className={`text-2xl md:text-4xl font-bold mb-12 flex items-center justify-start gap-4 ${theme.text}`}><GraduationCap className={theme.accentPrimary} size={32} />Education</h2></Reveal>
         <div className="space-y-8">
             {education.map((edu, i) => (
                 <Reveal key={i} delay={i * 100}>
-                    <div className={`p-8 ${theme.bgSoft} rounded-3xl border ${theme.border} shadow-md text-center max-w-2xl mx-auto hover:shadow-lg transition-shadow`}>
-                        <h3 className={`text-2xl font-bold ${theme.text} mb-2`}>{edu.school}</h3>
-                        <div className={`text-lg font-medium ${theme.accentPrimary} ${edu.minor ? 'mb-1' : 'mb-2'}`}>{edu.degree}</div>
-                        {edu.minor && <div className={`text-base font-medium ${theme.accentSecondary} mb-2`}>{edu.minor}</div>}
-                        <div className={`text-sm ${theme.textMuted} mb-4 font-mono`}>{edu.year}</div>
-                        <p className={`${theme.textMuted}`}>{edu.details}</p>
+                    <div className={`p-8 md:p-10 ${theme.bgSoft} rounded-3xl border ${theme.border} shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group`}>
+                        {/* Background Watermark */}
+                        <div className="absolute -right-6 -top-6 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 pointer-events-none transform rotate-12">
+                            <GraduationCap size={200} className={theme.text} />
+                        </div>
+                        
+                        <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
+                            <div className="flex-1">
+                                <h3 className={`text-2xl md:text-3xl font-bold ${theme.text} mb-2 tracking-tight`}>{edu.school}</h3>
+                                <div className={`text-xl font-bold ${theme.accentPrimary} mb-2`}>{edu.degree}</div>
+                                {edu.minor && (
+                                    <div className={`text-lg font-medium ${theme.textMuted} flex items-center gap-2`}>
+                                        <span className={`w-1.5 h-1.5 rounded-full ${theme.fillAccent} opacity-60`} />
+                                        {edu.minor}
+                                    </div>
+                                )}
+                            </div>
+                            
+                            <div className="shrink-0">
+                                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-2xl ${themeMode === 'dark' ? 'bg-slate-900/50' : 'bg-slate-100/50'} border ${theme.border} text-sm font-mono ${theme.textMuted} shadow-sm`}>
+                                    <Calendar size={14} className={theme.accentPrimary} /> {edu.year}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Clean dividing line */}
+                        <div className={`w-16 h-1 rounded-full ${theme.fillAccent} opacity-20 mb-6`} />
+                        
+                        <p className={`${theme.textMuted} leading-relaxed relative z-10 md:text-lg`}>
+                            {edu.details}
+                        </p>
                     </div>
                 </Reveal>
             ))}
@@ -272,7 +297,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                         value={message}
                                         onChange={(e) => setMessage(e.target.value)}
                                         className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all resize-none`} 
-                                        placeholder="I'd love to chat about a potential opportunity, a new project, or just say hi! :)"
+                                        placeholder="I'd love to hear about a potential opportunity, discuss a new project, or just chat about tech. Let's connect! :)"
                                     ></textarea>
                                 </div>
                                 <button disabled={formStatus === 'submitting'} type="submit" className={`w-full py-5 rounded-2xl font-bold shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2 ${theme.buttonPrimary} disabled:opacity-70`}>
