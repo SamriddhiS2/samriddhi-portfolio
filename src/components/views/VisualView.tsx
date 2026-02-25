@@ -12,17 +12,51 @@ interface VisualViewProps {
 
 export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
   const [formStatus, setFormStatus] = useState<'idle'|'submitting'|'success'>('idle');
+  
+  // State for the contact form
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
   const titleTyped = useTypingEffect("Samriddhi Sivakumar");
 
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('submitting');
-    setTimeout(() => {
-        setFormStatus('success');
-        setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1500);
+    
+    try {
+        // FormSubmit AJAX API
+        const res = await fetch("https://formsubmit.co/ajax/sivakumar.samriddhi@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                message,
+                _subject: `New Portfolio Inquiry from ${name}`,
+                _template: "box",
+                _replyto: email
+            })
+        });
+
+        if (res.ok) {
+            setFormStatus('success');
+            setName('');
+            setEmail('');
+            setMessage('');
+            setTimeout(() => setFormStatus('idle'), 4000);
+        } else {
+            throw new Error("Failed to send");
+        }
+    } catch (err) {
+        alert("Sorry, there was an issue sending your message. Please try emailing me directly at sivakumar.samriddhi@gmail.com!");
+        setFormStatus('idle');
+    }
   };
 
   return (
@@ -53,7 +87,6 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             <Reveal delay={600}>
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                     <button onClick={() => scrollTo('projects')} className={`px-8 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105 ${theme.buttonPrimary}`}>View Work</button>
-                    {/* UPDATED: Download Resume Button is now a real link pointing to the public folder */}
                     <a 
                       href="/SamriddhiSivakumar_Resume.pdf" 
                       target="_blank" 
@@ -206,16 +239,37 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Name</label>
-                                        <input required type="text" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="Jane Doe" />
+                                        <input 
+                                            required 
+                                            type="text" 
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} 
+                                            placeholder="Name" 
+                                        />
                                     </div>
                                     <div>
                                         <label className={`block text-sm font-medium ${theme.text} mb-2`}>Email</label>
-                                        <input required type="email" className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} placeholder="jane@example.com" />
+                                        <input 
+                                            required 
+                                            type="email" 
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all`} 
+                                            placeholder="example@gmail.com" 
+                                        />
                                     </div>
                                 </div>
                                 <div>
                                     <label className={`block text-sm font-medium ${theme.text} mb-2`}>Message</label>
-                                    <textarea required rows={5} className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all resize-none`} placeholder="Hi!"></textarea>
+                                    <textarea 
+                                        required 
+                                        rows={5} 
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        className={`w-full px-5 py-4 rounded-2xl ${theme.bg} border ${theme.border} ${theme.text} focus:outline-none focus:ring-2 ${themeMode === 'dark' ? 'focus:ring-teal-500' : 'focus:ring-teal-600'} transition-all resize-none`} 
+                                        placeholder="I'd love to chat about a potential opportunity or just say hi..."
+                                    ></textarea>
                                 </div>
                                 <button disabled={formStatus === 'submitting'} type="submit" className={`w-full py-5 rounded-2xl font-bold shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2 ${theme.buttonPrimary} disabled:opacity-70`}>
                                     {formStatus === 'submitting' ? <Loader2 size={20} className="animate-spin"/> : null}
