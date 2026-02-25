@@ -47,9 +47,36 @@ export const themes: Record<ThemeMode, Theme> = {
 };
 
 export const projects = [
-  { id: 'urban-pulse', title: "The Urban Pulse", desc: "Analyzing city traffic patterns using 5TB of sensor data.", details: "A comprehensive data analysis project processing over 5TB of IoT sensor data from metropolitan traffic systems. Utilized Python and Pandas for cleaning, and D3.js for visualizing congestion heatmaps in real-time. Reduced prediction latency by 40%.", tech: ["Python", "Pandas", "D3.js"], type: "Data Science", color: "from-teal-400 to-emerald-500", link: "https://github.com/SamriddhiS2" },
-  { id: 'neuronet', title: "NeuroNet", desc: "CNN for detecting early-stage radiology anomalies.", details: "Developed a Convolutional Neural Network architecture achieving 94% accuracy in detecting early-stage anomalies in X-ray scans. Implemented using PyTorch and TensorFlow, with a React frontend for radiologists to upload and view inference results.", tech: ["PyTorch", "TensorFlow"], type: "Machine Learning", color: "from-emerald-400 to-teal-600", link: "https://github.com/SamriddhiS2" },
-  { id: 'ecoparser', title: "EcoParser", desc: "Real-time dashboard for environmental monitoring sensors.", details: "Full-stack IoT dashboard for monitoring air quality index (AQI) sensors. Built with Node.js MQTT broker to handle high-throughput sensor streams and a Next.js frontend for real-time visualization. Deployed on AWS.", tech: ["React", "Node.js", "AWS"], type: "Full Stack", color: "from-teal-500 to-emerald-700", link: "https://github.com/SamriddhiS2" }
+  { 
+    id: 'sem-image-analysis', 
+    title: "Microcellular Foam SEM Image Analysis", 
+    desc: "Automated cell counting and sizing in PC-CO2 nanocellular foams.", 
+    details: "Developed a robust, Python-based image analysis pipeline for automated cell counting and sizing in polycarbonate-CO2 microcellular foams using SEM micrographs. Implemented calibration, denoising, morphological segmentation, and validation.", 
+    tech: ["Python", "OpenCV", "Image Processing"], 
+    type: "Machine Learning", 
+    color: "from-teal-400 to-emerald-500", 
+    link: "https://github.com/SamriddhiS2/Microcellular-Foam-Analysis" 
+  },
+  { 
+    id: 'husky-butterwalk', 
+    title: "Husky Butterwalk", 
+    desc: "Nighttime campus ride safety application for university students.", 
+    details: "Contributed as a software developer to a mobile app designed to enhance nighttime safety. Developed features for GPS tracking, live wait time estimates, and ride progress monitoring to empower students to make informed decisions.", 
+    tech: ["React Native", "TypeScript", "Mobile Dev"], 
+    type: "Mobile Application", 
+    color: "from-emerald-400 to-teal-600", 
+    link: "https://github.com/KatharineZhang/ButterWalk" 
+  },
+  { 
+    id: 'seeql', 
+    title: "SeeQL", 
+    desc: "VS Code extension enhancing SQL query execution and visualization.", 
+    details: "Developed a VS Code extension enabling users to visualize CREATE table SQL statements via ER diagrams and relational algebra, execute SQL queries for cloud/local databases, and generate SQL queries using AI.", 
+    tech: ["TypeScript", "SQLite", "VS Code API"], 
+    type: "Tooling", 
+    color: "from-teal-500 to-emerald-700", 
+    link: "https://github.com/Taipods/SeeQL" 
+  }
 ];
 
 export const experience = [
@@ -57,27 +84,46 @@ export const experience = [
     role: "Software Engineer Intern", 
     company: "Elementrailer", 
     period: "Dec 2025 - Present", 
-    desc: "Built the MVP of a fleet-management dashboard using React and Next.js. Established a CI/CD pipeline via GitHub Actions and achieved 75% code coverage with Jest, reducing deployment lead time by 60%." 
+    desc: "Developing 10+ reusable React/Next.js components for a fleet-management dashboard MVP. Designed a data-ingestion API, built real-time telematics visualizations, and established CI/CD pipelines achieving 75% test coverage." 
+  },
+  { 
+    role: "Student Assistant", 
+    company: "UW Information Technology", 
+    period: "Aug 2025 - Present", 
+    desc: "Engineering custom enterprise software solutions utilizing C# .NET, ASP.NET Core, and JavaScript. Contributing to the full software development lifecycle and applying CI/CD pipelines in a real-world enterprise environment." 
+  },
+  { 
+    role: "Coding Officer & Web Developer", 
+    company: "Web Impact UW", 
+    period: "Sep 2022 - Present", 
+    desc: "Spearheading a team of 8 developers on agile client projects. Engineered and launched responsive websites for 3+ clients using React.js and Figma, increasing client web traffic by an average of 30%." 
   },
   { 
     role: "AI & Software Research Intern", 
     company: "UW Radiology Department", 
     period: "Jun 2025 - Sept 2025", 
-    desc: "Automated the imaging series selection process for a clinical study using Python and pyDICOM, reducing manual data preparation time by over 80%. Co-authored an award-winning RSNA 2025 research abstract." 
+    desc: "Collaborated with radiologists to engineer an automated data extraction pipeline for an AI-driven CT screening project. Automated imaging series selection using Python and pyDICOM, reducing manual preparation time by over 80%." 
   },
   { 
     role: "Software Developer", 
     company: "Ignite Robotics", 
     period: "May 2025 - Aug 2025", 
-    desc: "Architected a full-stack digital waiver system using React, Node.js, and MongoDB. Designed a secure admin dashboard with real-time analytics to manage 500+ weekly active users." 
+    desc: "Architected a full-stack digital waiver system using React.js, Express.js, and SQL Server. Engineered a secure backend API that generates, cryptographically hashes, and stores legal documents as PDFs." 
+  },
+  { 
+    role: "Peer Mentor", 
+    company: "UW Robinson Center", 
+    period: "Sep 2023 - Present", 
+    desc: "Providing dedicated peer academic and socio-emotional support to first-year early entrance students, aiding their transition into university life through consistent quarterly outreach and orientation events." 
   }
 ];
 
 export const education = [
   { 
     degree: "B.S. Computer Science & Data Science", 
+    minor: "Minor in Business Administration",
     school: "University of Washington", 
     year: "Sept 2022 - June 2026", 
-    details: "UW Academy (Robinson Center). Awards: Dean's List, Opportunity Scholar of Cohort 12." 
+    details: "UW Academy (Robinson Center)"
   }
 ];

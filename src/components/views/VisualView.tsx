@@ -145,7 +145,8 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                 <Reveal key={i} delay={i * 100}>
                     <div className={`p-8 ${theme.bgSoft} rounded-3xl border ${theme.border} shadow-md text-center max-w-2xl mx-auto hover:shadow-lg transition-shadow`}>
                         <h3 className={`text-2xl font-bold ${theme.text} mb-2`}>{edu.school}</h3>
-                        <div className={`text-lg font-medium ${theme.accentPrimary} mb-2`}>{edu.degree}</div>
+                        <div className={`text-lg font-medium ${theme.accentPrimary} ${edu.minor ? 'mb-1' : 'mb-2'}`}>{edu.degree}</div>
+                        {edu.minor && <div className={`text-base font-medium ${theme.accentSecondary} mb-2`}>{edu.minor}</div>}
                         <div className={`text-sm ${theme.textMuted} mb-4 font-mono`}>{edu.year}</div>
                         <p className={`${theme.textMuted}`}>{edu.details}</p>
                     </div>
