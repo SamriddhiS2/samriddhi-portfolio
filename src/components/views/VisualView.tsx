@@ -195,7 +195,16 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
                                     <h3 className={`text-xl font-bold ${theme.text}`}>{exp.role}</h3>
                                     <div className={`flex items-center gap-2 text-sm ${theme.accentPrimary} mb-2 font-medium`}><Briefcase size={14} /> {exp.company}</div>
                                     <div className={`flex items-center gap-2 text-xs ${theme.textMuted} mb-4 font-mono`}><Calendar size={12} /> {exp.period}</div>
-                                    <p className={`${theme.textMuted}`}>{exp.desc}</p>
+                                    
+                                    <ul className="space-y-3 mt-4">
+                                        {Array.isArray(exp.desc) && exp.desc.map((bullet, idx) => (
+                                            <li key={idx} className={`flex items-start gap-3 ${theme.textMuted} text-sm md:text-base`}>
+                                                <span className={`w-1.5 h-1.5 rounded-full ${theme.fillAccent} opacity-60 shrink-0 mt-2`} />
+                                                <span className="leading-relaxed">{bullet}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
                                 </div>
                             </div>
                             <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center"><div className={`w-6 h-6 rounded-full ${theme.fillAccent} shadow-lg z-10 border-4 ${themeMode === 'dark' ? 'border-slate-900' : 'border-slate-50'}`} /></div>
