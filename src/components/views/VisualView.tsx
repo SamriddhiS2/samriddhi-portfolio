@@ -29,7 +29,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
     <div className="w-full pb-10">
       
       {/* Hero */}
-      <section className="min-h-screen flex flex-col md:flex-row justify-center items-center px-6 relative overflow-hidden gap-12 max-w-7xl mx-auto pt-24 md:pt-0 scroll-mt-28" id="home">
+      <section className="min-h-screen flex flex-col md:flex-row justify-center items-center px-6 relative overflow-hidden gap-12 max-w-7xl mx-auto pt-32 pb-24 md:pt-0 md:pb-0 scroll-mt-28" id="home">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-30 pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-emerald-500/30 rounded-full blur-[120px] animate-pulse" />
           <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-teal-500/30 rounded-full blur-[100px] animate-pulse delay-1000" />
@@ -59,16 +59,16 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
         </div>
 
         {/* Profile Image */}
-        <div className="flex-1 flex justify-center z-10 mt-12 md:mt-0">
-            <Reveal delay={300}>
-                <div className="relative w-64 h-64 md:w-96 md:h-96 group">
+        <div className="flex-1 flex justify-center items-center z-10 mt-12 md:mt-0 w-full">
+            <Reveal delay={300} className="w-full flex justify-center">
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 aspect-square flex-none shrink-0 group">
                     <div className={`absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full blur-2xl opacity-50 group-hover:opacity-70 transition-opacity duration-500`}></div>
                     
                     <div className={`relative w-full h-full rounded-full border-4 ${theme.border} shadow-2xl overflow-hidden bg-slate-200 flex items-center justify-center`}>
                         <img 
                           src="/profile.jpeg" 
                           alt="Samriddhi Sivakumar" 
-                          className="w-full h-full object-cover" 
+                          className="w-full h-full object-cover object-center" 
                         />
                     </div>
                 </div>
