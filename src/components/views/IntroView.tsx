@@ -22,7 +22,7 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                Transforming Complex Data into Actionable Intelligence.
             </p>
             
-            <div className={`mb-12 inline-flex items-center gap-2 px-5 py-2 rounded-full border ${theme.border} ${theme.bgSoft} shadow-sm`}>
+            <div className={`mb-12 inline-flex items-center gap-2 px-5 py-2 ${themeMode === 'dark' ? 'bg-white/5' : 'bg-white/80'} backdrop-blur-md rounded-full border ${theme.border} shadow-sm`}>
                 <span className={`relative flex h-3 w-3`}>
                   <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${theme.fillAccent} opacity-75`}></span>
                   <span className={`relative inline-flex rounded-full h-3 w-3 ${theme.fillAccent}`}></span>
@@ -31,24 +31,50 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl mb-24">
-                <button onClick={() => setMode('terminal')} className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between h-full`}>
+                <button 
+                    onClick={() => setMode('terminal')}
+                    className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex flex-col justify-between h-full`}
+                >
                     <div>
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Terminal size={100} className="text-white/10" /></div>
-                        <div className={`inline-flex p-3 rounded-2xl mb-4 bg-emerald-500/20 text-emerald-100`}><Code2 size={24} className="text-emerald-600 dark:text-emerald-200" /></div>
+                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Terminal size={100} className={themeMode === 'dark' ? "text-white/10" : "text-slate-900/5"} />
+                        </div>
+                        <div className={`inline-flex p-3 rounded-2xl mb-4 ${themeMode === 'dark' ? 'bg-teal-500/20 text-teal-100' : 'bg-teal-100 text-teal-800'}`}>
+                            <Code2 size={24} className={themeMode === 'dark' ? "text-teal-400" : "text-teal-600"} />
+                        </div>
                         <h3 className={`text-2xl font-bold mb-2 ${theme.text}`}>Technical</h3>
-                        <p className={`${theme.textMuted} mb-6`}>For Developers & Engineers.<span className="block text-sm opacity-70 mt-2 font-light">Command-line interface to view raw data, logs, and system stats.</span></p>
+                        <p className={`${theme.textMuted} mb-6`}>
+                            For Developers & Engineers.
+                            <span className="block text-sm opacity-70 mt-2 font-light">Command-line interface to view raw data, logs, and system stats.</span>
+                        </p>
                     </div>
-                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}><Terminal size={16} /> Launch Terminal</div>
+                    
+                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}>
+                         <Terminal size={16} /> Launch Terminal
+                    </div>
                 </button>
 
-                <button onClick={() => setMode('visual')} className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex flex-col justify-between h-full`}>
+                <button 
+                    onClick={() => setMode('visual')}
+                    className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between h-full`}
+                >
                     <div>
-                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Sparkles size={100} className="text-white/10" /></div>
-                        <div className={`inline-flex p-3 rounded-2xl mb-4 ${theme.homeIconBg} ${theme.homeIconColor}`}><Eye size={24} /></div>
+                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Sparkles size={100} className={themeMode === 'dark' ? "text-white/10" : "text-slate-900/5"} />
+                        </div>
+                        <div className={`inline-flex p-3 rounded-2xl mb-4 ${theme.homeIconBg} ${theme.homeIconColor}`}>
+                            <Eye size={24} />
+                        </div>
                         <h3 className={`text-2xl font-bold mb-2 ${theme.text}`}>Visual</h3>
-                        <p className={`${theme.textMuted} mb-6`}>For Recruiters & Designers.<span className="block text-sm opacity-70 mt-2 font-light">Interactive scrolling experience with visual case studies and animations.</span></p>
+                        <p className={`${theme.textMuted} mb-6`}>
+                            For Recruiters & Designers.
+                            <span className="block text-sm opacity-70 mt-2 font-light">Interactive scrolling experience with visual case studies and animations.</span>
+                        </p>
                     </div>
-                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}>View Portfolio <ArrowRight size={16} /></div>
+
+                    <div className={`mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg ${theme.buttonPrimary} w-max font-semibold text-sm shadow-md`}>
+                         View Portfolio <ArrowRight size={16} />
+                    </div>
                 </button>
             </div>
         </div>
