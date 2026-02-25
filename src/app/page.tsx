@@ -147,11 +147,13 @@ export default function App() {
                 <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Work</button>
                 <button onClick={() => handleNavClick('contact')} className={`${theme.hoverText} transition-colors`}>Contact</button>
             </div>
+            
             <div className="flex justify-center gap-6 mt-2">
-                <a href="#" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
-                <a href="#" className={`${theme.hoverTextSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
-                <a href="#" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
+                <a href="https://github.com/SamriddhiS2" target="_blank" rel="noreferrer" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Github size={18} /></a>
+                <a href="https://linkedin.com/in/samriddhisivakumar" target="_blank" rel="noreferrer" className={`${theme.hoverTextSecondary} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Linkedin size={18} /></a>
+                <a href="mailto:ssamriddhi.work@gmail.com" className={`${theme.hoverText} transition-colors p-2 rounded-full ${theme.bgSoft} shadow-sm`}><Mail size={18} /></a>
             </div>
+            
             <p className="opacity-80 font-medium mt-2">© 2026 Samriddhi Sivakumar.</p>
         </div>
       </footer>
