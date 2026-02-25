@@ -14,7 +14,7 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
     const titleTyped = useTypingEffect("Samriddhi Sivakumar");
 
     return (
-        <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 animate-in fade-in zoom-in duration-700 pt-20">
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-4 animate-in fade-in zoom-in duration-700 py-12">
             <h1 className={`text-4xl md:text-6xl font-bold mb-6 tracking-tight ${theme.text}`}>
                 {titleTyped}<span className={`animate-pulse ${theme.accentPrimary}`}>|</span>
             </h1>
@@ -30,7 +30,7 @@ export const IntroView = ({ setMode, themeMode, theme }: IntroViewProps) => {
                 <span className={`text-sm font-semibold tracking-wide uppercase ${theme.text} opacity-90`}>Select Your Experience</span>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl mb-24">
+            <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
                 <button 
                     onClick={() => setMode('terminal')}
                     className={`group p-8 rounded-3xl border ${theme.border} ${theme.bgSoft} hover:scale-[1.02] transition-all duration-300 text-left relative overflow-hidden shadow-lg hover:shadow-teal-500/10 flex flex-col justify-between h-full`}

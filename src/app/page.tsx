@@ -11,7 +11,7 @@ import { VisualView } from '../components/views/VisualView';
 export default function App() {
   const [mounted, setMounted] = useState(false);
   const [mode, setMode] = useState<AppMode>('intro'); 
-  const [themeMode, setThemeMode] = useState<ThemeMode>('dark'); // Default to dark
+  const [themeMode, setThemeMode] = useState<ThemeMode>('dark');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function App() {
   if (!mounted) return null;
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} font-sans transition-colors duration-500 overflow-x-hidden selection:bg-emerald-300 selection:text-emerald-900`}>
+    <div className={`min-h-screen ${theme.bg} ${theme.text} font-sans transition-colors duration-500 overflow-x-hidden flex flex-col selection:bg-emerald-300 selection:text-emerald-900`}>
       <CursorFollower theme={theme} />
       
       {/* Navbar */}
@@ -125,7 +125,7 @@ export default function App() {
           </div>
       )}
 
-      <main className="pt-20 min-h-screen flex flex-col relative">
+      <main className="flex-1 flex flex-col relative pt-20">
         {mode === 'intro' && <IntroView setMode={setMode} themeMode={themeMode} theme={theme} />}
         {mode === 'terminal' && <TerminalView theme={theme} themeMode={themeMode} />}
         {mode === 'visual' && <VisualView theme={theme} themeMode={themeMode} />}
