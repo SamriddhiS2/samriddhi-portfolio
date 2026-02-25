@@ -84,37 +84,72 @@ export const experience = [
     role: "Software Engineer Intern", 
     company: "Elementrailer", 
     period: "Dec 2025 - Present", 
-    desc: "Developing 10+ reusable React/Next.js components for a fleet-management dashboard MVP. Designed a data-ingestion API, built real-time telematics visualizations, and established CI/CD pipelines achieving 75% test coverage." 
+    desc: [
+      "Contribute to the first version of Elementrailer's fleet-management dashboard, developing over 10 reusable front-end components using React and Next.js.",
+      "Design and implement a lightweight data-ingestion API with 5 core endpoints (e.g., for telematics logs) and defined the corresponding PostgreSQL database schema.",
+      "Develop 4+ real-time data visualizations (speed, regen energy, alerts) using Recharts to display mock telematics data for the MVP demo.",
+      "Establish an initial CI/CD pipeline using GitHub Actions for the front-end repository and write Jest/React Testing Library unit tests to increase test coverage.",
+      "Assist in automating the generation of 3 key weekly investor metrics (miles towed, kWh regen) by writing Node.js/Python scripts to query the database.",
+      "Collaborate in daily stand-ups and 2 design sprints with the engineering team, translating Figma mockups into functional UI/UX improvements."
+    ]
   },
   { 
-    role: "Student Assistant", 
-    company: "UW Information Technology", 
+    role: "Student Assistant - App Dev", 
+    company: "University of Washington Information Technology", 
     period: "Aug 2025 - Present", 
-    desc: "Engineering custom enterprise software solutions utilizing C# .NET, ASP.NET Core, and JavaScript. Contributing to the full software development lifecycle and applying CI/CD pipelines in a real-world enterprise environment." 
+    desc: [
+      "Engineer custom software solutions utilizing C# .NET, .NET Core, and ASP.NET Core, alongside web technologies including HTML5, AJAX, JavaScript, jQuery, Json, and CSS.",
+      "Contribute to the full software development lifecycle: analyzed requirements, designed, developed, integrated, tested, debugged, and deployed applications.",
+      "Document, test, and merge code, employing unit and integration test frameworks and adhering to software development best practices and architectural principles.",
+      "Apply Continuous Integration/Continuous Deployment (CI/CD) pipelines and other operational practices in a real-world environment.",
+      "Collaborate effectively within a team setting, actively participating in daily stand-ups and peer code reviews, while also demonstrating strong independent work and clear communication.",
+      "Gain practical experience in enterprise-class infrastructure and received mentorship from seasoned professionals, enhancing skills in developing secure, scalable, and user-friendly applications."
+    ]
   },
   { 
     role: "Coding Officer & Web Developer", 
     company: "Web Impact UW", 
     period: "Sep 2022 - Present", 
-    desc: "Spearheading a team of 8 developers on agile client projects. Engineered and launched responsive websites for 3+ clients using React.js and Figma, increasing client web traffic by an average of 30%." 
+    desc: [
+      "Spearhead a team of 8 developers on 5+ client projects, implementing agile workflows and peer code reviews that decreased average project delivery time by 25%.",
+      "Develop and lead a technical workshop curriculum on Next.js and modern web standards, boosting member skill acquisition and increasing average event attendance by over 40%.",
+      "Collaborate with a 9-person executive board in weekly meetings to define technical strategy and project roadmaps, directly contributing to a 15% growth in club membership.",
+      "Engineered and launched responsive website for 3+ clients (SWECC, Bugis restaurant, ISACA) using HTML/CSS, React.js, and Figma, increasing client web traffic by an average of 30%.",
+      "Translated complex UI/UX wireframes into pixel-perfect interfaces and streamlined deployment, eliminating 100% of monthly hosting costs for club-managed sites."
+    ]
   },
   { 
     role: "AI & Software Research Intern", 
     company: "UW Radiology Department", 
     period: "Jun 2025 - Sept 2025", 
-    desc: "Collaborated with radiologists to engineer an automated data extraction pipeline for an AI-driven CT screening project. Automated imaging series selection using Python and pyDICOM, reducing manual preparation time by over 80%." 
+    desc: [
+      "Collaborate directly with radiologists and research scientists to engineer an automated data extraction pipeline for an AI-driven opportunistic CT screening project, building the foundational infrastructure for large-scale clinical analysis.",
+      "Co-author a research abstract, \"Transforming Patient Care: Radiologist-Driven Consultations with Opportunistic CT Screening,\" that was accepted for presentation at the Radiological Society of North America (RSNA) 2025 Annual Meeting.",
+      "Automate the imaging series selection process using Python and pyDICOM, reducing manual data preparation time for AI researchers by over 80%.",
+      "Develop and implement scripts to streamline the export and analysis of medical imaging data between clinical viewers, including Visage and Horos."
+    ]
   },
   { 
     role: "Software Developer", 
     company: "Ignite Robotics", 
     period: "May 2025 - Aug 2025", 
-    desc: "Architected a full-stack digital waiver system using React.js, Express.js, and SQL Server. Engineered a secure backend API that generates, cryptographically hashes, and stores legal documents as PDFs." 
+    desc: [
+      "Architected and deployed a full-stack digital waiver system using React.js, Express.js, and SQL Server, automating the organization's onboarding process and replacing a manual, paper-based workflow.",
+      "Engineered a secure backend API that generates, cryptographically hashes, and stores legal documents as PDFs, and sends automated confirmation emails with Nodemailer and pdf-lib.",
+      "Developed an interactive frontend featuring a multi-step user flow, a custom HTML canvas signature pad, and robust form validation to ensure a seamless and compliant user experience.",
+      "Resolved complex frontend bugs related to state management and component re-rendering, and fixed backend TypeScript errors to create a stable and reliable production-ready application."
+    ]
   },
   { 
     role: "Peer Mentor", 
-    company: "UW Robinson Center", 
+    company: "UW Robinson Center For Young Scholars", 
     period: "Sep 2023 - Present", 
-    desc: "Providing dedicated peer academic and socio-emotional support to first-year early entrance students, aiding their transition into university life through consistent quarterly outreach and orientation events." 
+    desc: [
+      "Provide dedicated peer academic and socio-emotional support to first-year EEPers and Acads, helping ease their transition into university life.",
+      "Conduct quarterly outreach to assigned mentees, ensuring consistent connection and offering guidance tailored to their preferred communication methods.",
+      "Participate in formal training sessions and collaborated closely with the lead academic adviser to align mentorship strategies with RC goals.",
+      "Volunteer at key RC events, including Bridge Orientation and the RC Mentor Kickoff, to foster a vibrant, welcoming community for new students."
+    ]
   }
 ];
 
