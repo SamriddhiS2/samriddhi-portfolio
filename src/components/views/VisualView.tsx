@@ -144,11 +144,9 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             {education.map((edu, i) => (
                 <Reveal key={i} delay={i * 100}>
                     <div className={`p-8 md:p-10 ${theme.bgSoft} rounded-3xl border ${theme.border} shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group`}>
-                        {/* Background Watermark */}
-                        <div className="absolute -right-6 -top-6 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500 pointer-events-none transform rotate-12">
-                            <GraduationCap size={200} className={theme.text} />
-                        </div>
-                        
+                        <div className={`absolute -right-6 -top-6 pointer-events-none transition-transform duration-500 group-hover:rotate-12 ${themeMode === 'dark' ? 'text-white/10' : 'text-slate-900/5'}`}>
+                            <GraduationCap size={200} />
+                        </div>                        
                         <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
                             <div className="flex-1">
                                 <h3 className={`text-2xl md:text-3xl font-bold ${theme.text} mb-2 tracking-tight`}>{edu.school}</h3>
