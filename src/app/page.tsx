@@ -88,7 +88,7 @@ export default function App() {
                 <button onClick={() => handleNavClick('skills')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Skills</button>
                 <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Education</button>
                 <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Experience</button>
-                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Work</button>
+                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Projects</button>
                 <button onClick={() => handleNavClick('contact')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             
@@ -125,7 +125,7 @@ export default function App() {
               <button onClick={() => handleNavClick('skills')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Skills</button>
               <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Education</button>
               <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Experience</button>
-              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Work</button>
+              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Projects</button>
               <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Contact</button>
           </div>
       )}
@@ -144,7 +144,7 @@ export default function App() {
                 <button onClick={() => handleNavClick('skills')} className={`${theme.hoverText} transition-colors`}>Skills</button>
                 <button onClick={() => handleNavClick('education')} className={`${theme.hoverText} transition-colors`}>Education</button>
                 <button onClick={() => handleNavClick('experience')} className={`${theme.hoverText} transition-colors`}>Experience</button>
-                <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Work</button>
+                <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Projects</button>
                 <button onClick={() => handleNavClick('contact')} className={`${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             

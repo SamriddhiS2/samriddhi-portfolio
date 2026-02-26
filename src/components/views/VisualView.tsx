@@ -90,7 +90,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
             <Reveal delay={400}><p className={`text-lg md:text-2xl ${theme.textMuted} max-w-2xl leading-relaxed mb-8 font-light text-center md:text-left`}>Transforming Complex Data into Actionable Intelligence.</p></Reveal>
             <Reveal delay={600}>
                 <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <button onClick={() => scrollTo('projects')} className={`px-8 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105 ${theme.buttonPrimary}`}>View Work</button>
+                    <button onClick={() => scrollTo('projects')} className={`px-8 py-4 rounded-full font-bold shadow-lg transition-all hover:scale-105 ${theme.buttonPrimary}`}>View Projects</button>
                     <a 
                       href="/SamriddhiSivakumar_Resume.pdf" 
                       target="_blank" 
