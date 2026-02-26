@@ -85,7 +85,7 @@ export default function App() {
 
           <div className="hidden md:flex items-center gap-4 ml-auto">
             <div className="flex items-center gap-6 text-sm font-medium pr-2">
-                <button onClick={() => handleNavClick('about')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>About</button>
+                <button onClick={() => handleNavClick('skills')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Skills</button>
                 <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Education</button>
                 <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Experience</button>
                 <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Work</button>
@@ -122,7 +122,7 @@ export default function App() {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
           <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
-              <button onClick={() => handleNavClick('about')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>About</button>
+              <button onClick={() => handleNavClick('skills')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Skills</button>
               <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Education</button>
               <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Experience</button>
               <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Work</button>
@@ -141,7 +141,7 @@ export default function App() {
             
             <div className="flex flex-wrap justify-center gap-4 md:gap-6 font-medium text-xs md:text-sm">
                 <button onClick={() => setMode('intro')} className={`${theme.hoverText} transition-colors`}>Home</button>
-                <button onClick={() => handleNavClick('about')} className={`${theme.hoverText} transition-colors`}>About</button>
+                <button onClick={() => handleNavClick('skills')} className={`${theme.hoverText} transition-colors`}>Skills</button>
                 <button onClick={() => handleNavClick('education')} className={`${theme.hoverText} transition-colors`}>Education</button>
                 <button onClick={() => handleNavClick('experience')} className={`${theme.hoverText} transition-colors`}>Experience</button>
                 <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Work</button>

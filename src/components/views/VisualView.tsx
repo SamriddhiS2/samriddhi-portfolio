@@ -118,7 +118,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
       </section>
 
       {/* Skills Section */}
-      <section id="about" className="py-16 px-6 max-w-6xl mx-auto scroll-mt-28">
+      <section id="skills" className="py-16 px-6 max-w-6xl mx-auto scroll-mt-28">
         <Reveal><h2 className={`text-2xl md:text-4xl font-bold mb-16 flex items-center justify-start gap-4 ${theme.text}`}><Hexagon className={`${theme.accentPrimary} fill-current opacity-20`} size={24} />Technical Expertise</h2></Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
