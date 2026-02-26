@@ -302,7 +302,7 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
       </section>
 
       {/* Competitive Programming / Coding Profiles */}
-      <section id="coding-profiles" className={`py-16 px-6 max-w-6xl mx-auto border-t border-white/5 scroll-mt-28`}>
+      <section id="coding" className={`py-16 px-6 max-w-6xl mx-auto border-t ${theme.border} scroll-mt-28`}>
         <Reveal><h2 className={`text-3xl md:text-4xl font-bold mb-12 flex items-center justify-start gap-4 ${theme.text}`}><Trophy className={theme.accentPrimary} size={32} />Competitive Programming</h2></Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           

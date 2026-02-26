@@ -33,7 +33,6 @@ export default function App() {
     }
   }, [mode, themeMode, mounted]);
 
-  // MOBILE GUARD: Force visual mode if screen is small and user is on terminal mode
   useEffect(() => {
     if (!mounted) return;
     const enforceMobileVisual = () => {
@@ -77,7 +76,6 @@ export default function App() {
             <div className={`w-8 h-8 rounded-lg overflow-hidden shadow-md flex items-center justify-center ${theme.buttonPrimary}`}>
                 <Terminal size={18} className="text-white" />
             </div>
-            {/* HIDDEN on mobile screens OR when in Intro Mode */}
             <div className={`font-bold tracking-tight text-lg ${mode === 'intro' ? 'hidden' : 'hidden md:block'}`}>
                 <span className={theme.navText}>{nameTyped}</span>
             </div>
@@ -85,11 +83,15 @@ export default function App() {
 
           <div className="hidden md:flex items-center gap-4 ml-auto">
             <div className="flex items-center gap-6 text-sm font-medium pr-2">
-                <button onClick={() => handleNavClick('skills')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Skills</button>
-                <button onClick={() => handleNavClick('education')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Education</button>
-                <button onClick={() => handleNavClick('experience')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Experience</button>
-                <button onClick={() => handleNavClick('projects')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Projects</button>
-                <button onClick={() => handleNavClick('contact')} className={`${theme.textMuted} ${theme.hoverText} transition-colors`}>Contact</button>
+                {['skills', 'education', 'experience', 'projects', 'coding', 'contact'].map(item => (
+                  <button 
+                    key={item} 
+                    onClick={() => handleNavClick(item)} 
+                    className={`${theme.textMuted} ${theme.hoverText} capitalize transition-colors`}
+                  >
+                    {item}
+                  </button>
+                ))}
             </div>
             
             <div className={`w-px h-6 ${theme.separator}`}></div>
@@ -119,14 +121,18 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
           <div className={`fixed top-24 right-6 w-64 rounded-3xl shadow-2xl ${theme.bgSoft} border ${theme.border} z-50 md:hidden flex flex-col p-6 gap-2 animate-in fade-in zoom-in-95 origin-top-right`}>
-              <button onClick={() => handleNavClick('skills')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Skills</button>
-              <button onClick={() => handleNavClick('education')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Education</button>
-              <button onClick={() => handleNavClick('experience')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Experience</button>
-              <button onClick={() => handleNavClick('projects')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Projects</button>
-              <button onClick={() => handleNavClick('contact')} className={`py-2 text-base font-bold ${theme.text} ${theme.hoverText}`}>Contact</button>
+              {['skills', 'education', 'experience', 'projects', 'coding', 'contact'].map(item => (
+                  <button 
+                    key={item} 
+                    onClick={() => handleNavClick(item)} 
+                    className={`py-2 text-base font-bold capitalize ${theme.text} ${theme.hoverText}`}
+                  >
+                    {item}
+                  </button>
+              ))}
           </div>
       )}
 
@@ -136,6 +142,7 @@ export default function App() {
         {mode === 'visual' && <VisualView theme={theme} themeMode={themeMode} />}
       </main>
       
+      {/* Footer */}
       <footer className={`py-6 md:py-8 text-center ${theme.textMuted} border-t ${theme.border} mt-auto`}>
         <div className="flex flex-col items-center gap-3 md:gap-4 px-4">
             
@@ -145,6 +152,7 @@ export default function App() {
                 <button onClick={() => handleNavClick('education')} className={`${theme.hoverText} transition-colors`}>Education</button>
                 <button onClick={() => handleNavClick('experience')} className={`${theme.hoverText} transition-colors`}>Experience</button>
                 <button onClick={() => handleNavClick('projects')} className={`${theme.hoverText} transition-colors`}>Projects</button>
+                <button onClick={() => handleNavClick('coding')} className={`${theme.hoverText} transition-colors`}>Coding</button>
                 <button onClick={() => handleNavClick('contact')} className={`${theme.hoverText} transition-colors`}>Contact</button>
             </div>
             
