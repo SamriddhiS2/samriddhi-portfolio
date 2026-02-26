@@ -54,8 +54,10 @@ export const projects = [
     details: "Developed a robust, Python-based image analysis pipeline for automated cell counting and sizing in polycarbonate-CO2 microcellular foams using SEM micrographs. Implemented calibration, denoising, morphological segmentation, and validation.", 
     tech: ["Python", "OpenCV", "Image Processing"], 
     type: "Machine Learning", 
-    color: "from-teal-400 to-emerald-500", 
-    link: "https://github.com/SamriddhiS2/Microcellular-Foam-Analysis" 
+    color: "from-teal-400 to-blue-500",
+    link: "https://github.com/SamriddhiS2/Microcellular-Foam-Analysis",
+    mockType: "vision",
+    mockData: ["ANALYSIS_MODE: ACTIVE", "RESOLUTION: 0.2nm", "CELLS_DETECTED: 14,290", "STATUS: OPTIMIZED"]
   },
   { 
     id: 'husky-butterwalk', 
@@ -64,8 +66,10 @@ export const projects = [
     details: "Contributed as a software developer to a mobile app designed to enhance nighttime safety. Developed features for GPS tracking, live wait time estimates, and ride progress monitoring to empower students to make informed decisions.", 
     tech: ["React Native", "TypeScript", "Mobile Dev"], 
     type: "Mobile Application", 
-    color: "from-emerald-400 to-teal-600", 
-    link: "https://github.com/KatharineZhang/ButterWalk" 
+    color: "from-emerald-400 to-teal-600",
+    link: "https://github.com/KatharineZhang/ButterWalk",
+    mockType: "map",
+    mockData: ["LAT: 47.6553° N", "LON: 122.3035° W", "ETA: 4 MIN", "STATUS: SECURE"]
   },
   { 
     id: 'seeql', 
@@ -74,8 +78,10 @@ export const projects = [
     details: "Developed a VS Code extension enabling users to visualize CREATE table SQL statements via ER diagrams and relational algebra, execute SQL queries for cloud/local databases, and generate SQL queries using AI.", 
     tech: ["TypeScript", "SQLite", "VS Code API"], 
     type: "Tooling", 
-    color: "from-teal-500 to-emerald-700", 
-    link: "https://github.com/Taipods/SeeQL" 
+    color: "from-indigo-500 to-purple-700",
+    link: "https://github.com/Taipods/SeeQL",
+    mockType: "editor",
+    mockData: ["SELECT * FROM visualizations v", "JOIN schemas s ON v.id = s.id;", "> EXECUTING QUERY...", "> 4ms RESPONSE TIME"]
   }
 ];
 

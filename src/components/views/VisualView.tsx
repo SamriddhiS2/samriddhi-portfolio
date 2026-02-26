@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
+import { Activity, ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
 import { Reveal } from '../utilities';
 import { useTypingEffect } from '../../hooks';
 import { Theme, ThemeMode, projects, experience, education } from '../../data/portfolio';
@@ -222,19 +222,69 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
         <div className="space-y-24">
           {projects.map((project, i) => (
             <Reveal key={project.id}>
-              <div className={`flex flex-col md:flex-row gap-12 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                <div className="flex-1 w-full aspect-video rounded-3xl overflow-hidden relative group shadow-2xl">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-                  <div className={`absolute inset-4 ${theme.bg} rounded-3xl flex items-center justify-center border ${theme.border}`}>
-                    <div className={`${theme.textMuted} font-mono text-sm opacity-50 flex flex-col items-center gap-4`}>
-                      <Code2 size={48} />
-                      <span>{project.title.toLowerCase()}.exe</span>
+              <div className={`flex flex-col md:flex-row gap-12 lg:gap-20 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="flex-1 w-full group perspective-1000">
+                  <div className={`relative aspect-video rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]`}>
+                    {/* Dynamic Glow Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
+                    {/* Glass Container */}
+                    <div className={`absolute inset-[2px] ${themeMode === 'dark' ? 'bg-slate-900/90' : 'bg-[#1e293b]/95'} backdrop-blur-xl rounded-[calc(1.5rem-2px)] flex flex-col border border-white/10 overflow-hidden`}>
+                        {/* Mac-Style Window Header */}
+                        <div className={`px-4 py-3 flex items-center justify-between border-b border-white/10 bg-white/5`}>
+                            <div className="flex gap-1.5">
+                                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
+                                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                            </div>
+                            <div className={`text-[10px] uppercase tracking-widest text-slate-400 font-mono`}>
+                                {project.title.split(' ')[0].toLowerCase()}_{project.mockType}
+                            </div>
+                        </div>
+                        {project.mockType === 'vision' && (
+                            <div className="flex-1 flex flex-col items-center justify-center relative p-6">
+                                {/* Grid background */}
+                                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]" />
+                                <div className="w-16 h-16 border border-teal-500/40 rounded-full flex items-center justify-center relative mb-4">
+                                    <div className="absolute inset-2 border border-teal-500/60 rounded-full border-t-transparent animate-spin" style={{ animationDuration: '3s' }} />
+                                    <Activity className="text-teal-400" size={24} />
+                                </div>
+                                <div className="font-mono text-xs text-teal-400/80 text-center space-y-1 z-10">
+                                    {project.mockData?.map((line, idx) => <div key={idx}>{line}</div>)}
+                                </div>
+                            </div>
+                        )}
+                        {project.mockType === 'map' && (
+                            <div className="flex-1 flex flex-col items-center justify-center relative p-6">
+                                {/* Radar circles */}
+                                <div className="absolute w-24 h-24 rounded-full border border-emerald-500/30" />
+                                <div className="absolute w-40 h-40 rounded-full border border-emerald-500/10" />
+                                <MapPin className="text-emerald-400 z-10 animate-bounce mb-6" size={28} />
+                                <div className="grid grid-cols-2 gap-x-8 gap-y-2 font-mono text-[10px] text-emerald-400/80 z-10 w-full max-w-[250px] px-4 py-3 bg-black/40 rounded-xl border border-emerald-500/20">
+                                    {project.mockData?.map((line, idx) => <div key={idx}>{line}</div>)}
+                                </div>
+                            </div>
+                        )}
+                        {project.mockType === 'editor' && (
+                            <div className="flex-1 flex flex-col justify-center p-6 relative bg-[#0d1117]">
+                                <Database className="absolute bottom-4 right-4 text-indigo-500/10" size={80} />
+                                <div className="font-mono text-xs md:text-sm space-y-2 z-10">
+                                    {project.mockData?.map((line, idx) => (
+                                        <div key={idx} className="flex gap-4">
+                                            <span className="text-slate-600 select-none w-4 text-right">{idx + 1}</span>
+                                            <span className={`${idx < 2 ? 'text-indigo-300' : 'text-emerald-400'}`}>
+                                                {line}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                   </div>
                 </div>
                 <div className="flex-1">
                   <span className={`${theme.accentSecondary} font-mono text-sm tracking-widest uppercase mb-4 block`}>{project.type}</span>
-                  <h3 className={`text-4xl font-bold mb-6 ${theme.text}`}>{project.title}</h3>
+                  <h3 className={`text-3xl md:text-4xl font-bold mb-6 ${theme.text}`}>{project.title}</h3>
                   <p className={`${theme.textMuted} text-lg leading-relaxed mb-8`}>{project.desc}</p>
                   <div className="flex flex-wrap gap-3 mb-8">
                     {project.tech.map(t => <span key={t} className={`px-3 py-1 bg-white/5 border ${theme.border} rounded-lg text-sm ${theme.text}`}>{t}</span>)}
