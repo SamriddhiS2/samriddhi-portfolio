@@ -91,9 +91,9 @@ export const experience = [
     company: "Elementrailer", 
     period: "Dec 2025 - Present", 
     desc: [
-      "Built the MVP of Elementrailer's fleet-management dashboard using React and Next.js, creating a library of 10+ reusable components that accelerated UI development velocity.",
-      "Established a CI/CD pipeline via GitHub Actions and achieved 75% code coverage by implementing a robust suite of Jest and React Testing Library unit tests.",
-      "Automated weekly investor metric generation (miles towed, kWh regen), reducing manual reporting time by 90%."
+      "Build the MVP of Elementrailer's fleet-management dashboard using React and Next.js, creating a library of 10+ reusable components that accelerated UI development velocity.",
+      "Establish a CI/CD pipeline via GitHub Actions and achieve 75% code coverage by implementing a robust suite of Jest and React Testing Library unit tests.",
+      "Automate weekly investor metric generation (miles towed, kWh regen), reducing manual reporting time by 90%."
     ]
   },
   { 
@@ -101,9 +101,9 @@ export const experience = [
     company: "University of Washington Information Technology", 
     period: "Aug 2025 - Present", 
     desc: [
-      "Engineered and deployed 3+ new features for an enterprise-level student application using C#, .NET Core, and JavaScript, improving functionality for over 50,000 students and staff.",
-      "Increased application reliability by authoring unit and integration tests that improved code coverage by 15%.",
-      "Streamlined the software development lifecycle within an agile team, utilizing CI/CD pipelines to automate builds and reduce manual intervention by 20%."
+      "Engineer and deploy 3+ new features for an enterprise-level student application using C#, .NET Core, and JavaScript, improving functionality for over 50,000 students and staff.",
+      "Increase application reliability by authoring unit and integration tests that improved code coverage by 15%.",
+      "Streamline the software development lifecycle within an agile team, utilizing CI/CD pipelines to automate builds and reduce manual intervention by 20%."
     ]
   },
   { 
@@ -111,8 +111,8 @@ export const experience = [
     company: "UW Robinson Center", 
     period: "Sep 2023 - Present", 
     desc: [
-      "Provided dedicated peer academic and socio-emotional support to first-year early entrance students, easing their transition into university life.",
-      "Conducted quarterly outreach and volunteered at key orientation events to foster a vibrant, welcoming community for new students."
+      "Provide dedicated peer academic and socio-emotional support to first-year early entrance students, easing their transition into university life.",
+      "Conduct quarterly outreach and volunteer at key orientation events to foster a vibrant, welcoming community for new students."
     ]
   },
   { 
@@ -120,9 +120,9 @@ export const experience = [
     company: "Web Impact UW", 
     period: "Sep 2022 - Present", 
     desc: [
-      "Led a team of 8 developers on 4+ client projects, implementing agile workflows that decreased average project delivery time by 25%.",
-      "Designed and developed responsive websites for clients like SWECC and Bugis using React and Figma, driving a 30% increase in user engagement and achieving a 95% client satisfaction rate.",
-      "Pioneered a technical workshop series training 30+ members in modern web development."
+      "Lead a team of 5 developers on 8+ client projects, implementing agile workflows that decreased average project delivery time by 25%.",
+      "Design and develop responsive websites for clients like SWECC and Bugis using React and Figma, driving a 30% increase in user engagement and achieving a 95% client satisfaction rate.",
+      "Pioneer a technical workshop series training 30+ members in modern web development."
     ]
   },
   { 
