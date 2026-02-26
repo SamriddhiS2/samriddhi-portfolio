@@ -1,6 +1,10 @@
 "use client";
 import React, { useState } from 'react';
-import { Activity, ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Briefcase, GraduationCap, Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon } from 'lucide-react';
+import { 
+  ArrowRight, Sparkles, FileText, CheckCircle, Loader2, Briefcase, GraduationCap, 
+  Calendar, Mail, MapPin, Github, Linkedin, Database, Code2, Cpu, Hexagon, 
+  Terminal as TerminalIcon, Activity, Trophy, Send 
+} from 'lucide-react';
 import { Reveal } from '../utilities';
 import { useTypingEffect } from '../../hooks';
 import { Theme, ThemeMode, projects, experience, education } from '../../data/portfolio';
@@ -294,6 +298,76 @@ export const VisualView = ({ theme, themeMode }: VisualViewProps) => {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* Competitive Programming / Coding Profiles */}
+      <section id="coding-profiles" className={`py-16 px-6 max-w-6xl mx-auto border-t border-white/5 scroll-mt-28`}>
+        <Reveal><h2 className={`text-3xl md:text-4xl font-bold mb-12 flex items-center justify-start gap-4 ${theme.text}`}><Trophy className={theme.accentPrimary} size={32} />Competitive Programming</h2></Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* LeetCode Card */}
+          <Reveal delay={100}>
+            <a href="https://leetcode.com/u/samriddhis2/" target="_blank" rel="noopener noreferrer" className={`block p-8 md:p-10 ${theme.bgSoft} rounded-3xl border ${theme.border} hover:shadow-xl transition-all duration-300 group relative overflow-hidden`}>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl group-hover:bg-amber-500/20 transition-all duration-500" />
+              
+              <div className="flex items-center justify-between mb-8 relative z-10">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <Code2 className="text-amber-500" size={28} />
+                  </div>
+                  <div>
+                    <h3 className={`text-2xl font-bold ${theme.text}`}>LeetCode</h3>
+                    <p className={`${theme.textMuted} text-sm font-mono mt-1`}>@samriddhis2</p>
+                  </div>
+                </div>
+                <div className={`w-10 h-10 rounded-full ${themeMode === 'dark' ? 'bg-slate-900/50' : 'bg-slate-100/50'} flex items-center justify-center group-hover:bg-amber-500/20 transition-colors`}>
+                  <ArrowRight className={`${theme.textMuted} group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all`} size={20} />
+                </div>
+              </div>
+
+              <div className="relative z-10">
+                <p className={`${theme.textMuted} mb-6 text-sm md:text-base`}>Regularly practicing data structures, algorithms, and technical interview problem-solving.</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-amber-500`}>Algorithms</span>
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-amber-500`}>Data Structures</span>
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-amber-500`}>Problem Solving</span>
+                </div>
+              </div>
+            </a>
+          </Reveal>
+
+          {/* HackerRank Card */}
+          <Reveal delay={200}>
+            <a href="https://www.hackerrank.com/profile/samriddhis2" target="_blank" rel="noopener noreferrer" className={`block p-8 md:p-10 ${theme.bgSoft} rounded-3xl border ${theme.border} hover:shadow-xl transition-all duration-300 group relative overflow-hidden`}>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-500" />
+              
+              <div className="flex items-center justify-between mb-8 relative z-10">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                    <TerminalIcon className="text-emerald-500" size={28} />
+                  </div>
+                  <div>
+                    <h3 className={`text-2xl font-bold ${theme.text}`}>HackerRank</h3>
+                    <p className={`${theme.textMuted} text-sm font-mono mt-1`}>@samriddhis2</p>
+                  </div>
+                </div>
+                <div className={`w-10 h-10 rounded-full ${themeMode === 'dark' ? 'bg-slate-900/50' : 'bg-slate-100/50'} flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors`}>
+                  <ArrowRight className={`${theme.textMuted} group-hover:text-emerald-500 group-hover:translate-x-0.5 transition-all`} size={20} />
+                </div>
+              </div>
+
+              <div className="relative z-10">
+                <p className={`${theme.textMuted} mb-6 text-sm md:text-base`}>Honing logic, debugging skills, and language-specific proficiencies in Python and SQL.</p>
+                <div className="flex flex-wrap gap-2">
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-emerald-500`}>Python</span>
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-emerald-500`}>SQL</span>
+                  <span className={`px-3 py-1 text-xs font-mono rounded-lg ${themeMode === 'dark' ? 'bg-slate-900/60' : 'bg-slate-100/60'} border ${theme.border} text-emerald-500`}>Logic & Debugging</span>
+                </div>
+              </div>
+            </a>
+          </Reveal>
+
         </div>
       </section>
 

@@ -97,7 +97,7 @@ export const experience = [
     ]
   },
   { 
-    role: "Student Assistant", 
+    role: "Student Assistant - Application Development", 
     company: "University of Washington Information Technology", 
     period: "Aug 2025 - Present", 
     desc: [
